@@ -29,7 +29,8 @@ def thankyou():
 #建立旅遊景點API(頁數和關鍵字)&route
 @app.route("/api/attractions",methods=["GET"])
 def api_attr():	
-	page=request.args.get('page')
+	page=request.args.get('page',0)
+	print("page:",type(page),page)
 	keyword=request.args.get('keyword')
 	#如果關鍵字有，將執行下列判斷
 	if keyword!=None:
@@ -42,8 +43,12 @@ def api_attr():
 				SELECT id,name,category2,description,address,transport,mrt,latitude,longitude,images
 				FROM sites WHERE name like %s LIMIT %s,%s""",(("%"+keyword+"%"),page,ender))
 				result=cursor.fetchall() #取出全部資料並放到result中
+				print("result:",result[0]["images"],type(result[0]["images"]))
 				count=cursor.rowcount #查詢究竟有哪幾筆資料
 				mydb.commit() #送出到資料庫
+				
+				bigcat=json.loads(result[0]["images"])
+				print("bigcat:",bigcat,type(bigcat))
 				if got!=0:
 					summary=[] #建立一個列表
 					if count<12:
@@ -59,6 +64,7 @@ def api_attr():
 							"longitude":site["longitude"],
 							"images":site["images"]
 							}
+							
 							summary.append(tpidata)
 							final={"nextPage":None,"data":summary}
 							return jsonify(final)
