@@ -17,9 +17,9 @@ def bulid(mydb):
         address varchar(255),
         transport TEXT,
         mrt varchar(255),
-        latitude varchar(255),
-        longitude varchar(255),
-        images TEXT
+        latitude double, 
+        longitude double,
+        images LongText
     )"""
     cursor.execute(sql) #執行資料庫欄位設定命令
     mydb.commit() #確認執行提交到SQL
