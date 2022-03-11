@@ -19,7 +19,7 @@ def bulid(mydb):
         mrt varchar(255),
         latitude double, 
         longitude double,
-        images TEXT
+        images LongText
     )"""
     cursor.execute(sql) #執行資料庫欄位設定命令
     mydb.commit() #確認執行提交到SQL
