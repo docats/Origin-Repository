@@ -1,0 +1,327 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+/* 桌機-螢幕解析度的寬度 > 1200 像素 */
+body {
+	line-height: 1;
+    font-family: "Noto Sans TC",Verdana, Geneva, Tahoma, sans-serif;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+body{
+    color:#333;
+    font-size: 20px;
+}
+
+.wrapper{
+    max-width: 100%;
+}
+
+.m_my_nav{
+    display:none;
+}
+
+.my_nav{
+    display: flex;
+    justify-content: space-between;
+    padding:40px;
+}
+
+.item_wp a{
+    display: inline-block;
+    padding:10px 10px;
+    text-decoration: none;
+    color:#333;
+    font-size: 16px;
+}
+
+.item_wp .item_func a{
+    padding:10px 0;
+}
+
+.item_wp a:hover{
+    text-decoration: underline;
+}
+
+.my_home{
+    padding-bottom: 30px;
+}
+
+.welcome{
+    background-image:linear-gradient(135deg, #AADDEE 0%, #66AABB 100%);
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    justify-content: center;
+    position: relative;
+}
+
+.tpi_search{
+    margin-left:40px;
+}
+
+.welcome h3{
+    font-size: 28px;
+    color: #F8F8F8;
+}
+.welcome p{
+    font-size: 16px;
+    color:#F8F8F8;
+    padding:20px 0;
+}
+
+.my_box{
+    max-width: 1200px;
+    margin: 0px auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.box{
+    text-decoration: none;
+    display: block;
+}
+
+.box_item{
+    width:260px;
+    height: auto;
+    margin:10px;
+    border:1px solid #E8E8E8;
+    border-radius: 5px;
+}
+
+.box_item img{
+    vertical-align: bottom;
+    width:100%;
+    height: 210px;
+}
+
+.box_item .point{
+    display:flex;
+    justify-content: space-between;
+    padding:20px;
+}
+
+.box_item .tpi_view{
+    font-weight: 700;
+    padding: 20px;
+    color:#333;
+}
+
+.my_website .tpi_title{
+    font-weight: 700;
+    font-size: 30px;
+    color:#448899;
+}
+
+.tpi_find{
+    position: absolute;
+    background-color: #448899;
+    border:0;
+    width: 60px;
+    height: 46px;
+    border-radius:0px 15px 15px 0;
+}
+
+.tpi_find:hover{
+    background-color: #0b6a81;
+}
+
+.tpi_search{
+    position: relative;
+    z-index: 999;
+}
+
+.site_name,.site_class{
+    font-size: 16px;
+    color:#757575;
+}
+
+
+
+.search_con{
+    width: 400px;
+    height: 46px;
+    border:0;
+    font-size:16px;
+    font-weight: 700;
+    padding:0px 0px 0px 15px;
+    border-radius: 15px 0 0 15px;
+    letter-spacing: 1px;
+}
+
+.temple{
+    position: absolute;
+    right:0;
+    bottom:0;
+}
+
+.temple img{
+    vertical-align: bottom;
+} 
+
+footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #757575;
+    height: 104px;
+    margin-top: 30px;
+}
+
+.copyright{
+   
+    font-weight: 700;
+    color:#fff;
+    font-size: 16px;
+    line-height: 13px;
+}
+
+
+/* 平板-600 像素 < 螢幕解析度的寬度 <= 1200 像素 */
+@media (max-width:1200px) {
+    .my_box{
+        max-width:1200px;
+        margin:0 auto;
+        display:flex;
+        flex-wrap: wrap;
+        justify-content:center;
+    }
+    /* .box{
+        width:30%;
+        margin:20px;
+        
+    } */
+    /* .box_item{
+        width: 100%;
+        
+    } */
+    /* .box_item .point,.box_item img{
+        width: 100%;
+    } */
+}
+
+/* 手機-：螢幕解析度的寬度 <= 600 像素 */
+@media (max-width:600px) {
+    a{
+        color:#666;
+        text-decoration: none;
+    }
+    .my_nav,.my_website{
+        display: none;
+    }
+    .m_my_nav{
+        display: block;
+        display: flex;
+        justify-content: space-between;
+        padding:20px;
+    }
+    .m_item_wp{
+        display: flex;
+        justify-content: flex-end;
+        /* width:50%; */
+        height: auto;
+        padding:10px;
+        font-size: 16px;
+    }
+    .m_item_wp span{
+        display: inline-block;
+    }
+    .m_item_wp .item a{
+        margin-right:10px;
+    }
+    .box_item{
+        width: 90%;
+    }
+    .m_my_website{
+        display: flex;
+        align-items: center;
+        padding:10px;
+    }
+    .m_my_website h1{
+        font-size: 30px;
+        font-weight: 700;
+        color:#448899;
+    }
+    .search_con{
+        width: 60%;
+        height: 46px;
+        border:0;
+        font-size:16px;
+        font-weight: 700;
+        border-radius: 15px 0 0 15px;
+        letter-spacing: 1px;
+    }
+    .temple{
+        position:absolute;
+        right:-80px;
+        bottom:0;
+        width:70%;
+        height: auto;
+    }
+    .temple img{
+        width:100%;
+        height: auto;
+        vertical-align: bottom;
+    }
+    .welcome {
+        background-image: linear-gradient(135deg, #AADDEE 0%, #66AABB 100%);
+        height: 300px;
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        justify-content: center;
+        position: relative;
+        overflow-x: hidden;
+    }
+    .welcome p{
+        letter-spacing: 3px;
+    }
+    .my_box{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
