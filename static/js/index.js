@@ -6,7 +6,7 @@ let str = "";
 let page = 0;
 const footer = document.getElementById("footer");
 const search = document.getElementById("searchBtn");
-const loadingIcon = document.getElementsByClassName("loading-icon")[0];
+// const loadingIcon = document.getElementsByClassName("loading-icon")[0];
 let next;
 let words;
 

@@ -1,68 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
-    <title>Welcome to MyHome</title>
-</head>
-<body>
-    <div class="wrapper">
-        <!-- 桌機選單 -->
-        <nav class="my_nav">
-            <div class="my_website"><h1 class="tpi_title">台北一日遊</h1></div>
-            <div class="item_wp">
-                <span class="item"><a href="javascript:;">預定行程</a></span>
-                <span class="item_func"><a href="javascript:;">登入</a>&nbsp;&#47;<a href="javascript:;">註冊</a></span>
-                
-                
-            </div>
-        </nav>
-         <!-- 桌機選單 -->
-
-        <!-- 手機選單 -->
-        <nav class="m_my_nav">
-            <div class="m_my_website">
-                <h1>台北一日遊</h1>
-                <!-- <p>探索每個角落，體驗城市的深度旅遊行程</p> -->
-            </div>
-            <div class="m_item_wp">
-                <span class="item"><a href="javascript:;">預定行程</a></span>
-                <span class="item_func"><a href="javascript:;">登入</a>&nbsp;&#47;<a href="javascript:;">註冊</a></span>
-            </div>
-        </nav>
-        <!-- 手機選單 -->
-        
-        <section class="my_home">
-            <div class="welcome">
-               
-                <div class="tpi_search">
-                    <h3>輕鬆享受台北一日悠閒</h3>
-                    <p>探索每個角落，體驗城市的深度旅遊行程</p>
-                    <label for="site-search"></label>
-                    <input type="text" id="SearchKey" name="q" placeholder="輸入景點名稱查詢" class="search_con">
-                    <button class="tpi_find" id="searchBtn" onclick="moreSearch()">
-                        <img src="{{url_for('static',filename='images/icon_searchsearch.svg')}}" alt="搜尋">
-                    </button>   
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet"
+              href="{{ url_for('static',filename='css/main.css')}}">
+        <title>Welcome to MyHome</title>
+    </head>
+    <body>
+        <div class="wrapper">
+            <!-- 桌機選單 -->
+            <nav class="my_nav">
+                <div class="nav_box">
+                    <div class="my_website">
+                        <h1 class="tpi_title">台北一日遊</h1>
+                    </div>
+                    <div class="item_wp">
+                        <span class="item"><a href="javascript:;">預定行程</a></span>
+                        <span class="item_func"><a href="javascript:;">登入</a>&nbsp;&#47;<a href="javascript:;">註冊</a></span>
+                    </div>
                 </div>
-                <div class="temple"><img src="{{url_for('static',filename='images/welcome 1.png')}}"></div>
-            </div>
-        </section>
-        <section class="my_box" id="mains">
-            <!-- <div class="box_item">
+            </nav>
+            <!-- 桌機選單 -->
+            <!-- 手機選單 -->
+            <nav class="m_my_nav">
+                <div class="m_nav_box">
+                    <div class="m_my_website">
+                        <h1>台北一日遊</h1>
+                        <!-- <p>探索每個角落，體驗城市的深度旅遊行程</p> -->
+                    </div>
+                    <div class="m_item_wp">
+                        <span class="item"><a href="javascript:;">預定行程</a></span>
+                        <span class="item_func"><a href="javascript:;">登入</a>&nbsp;&#47;<a href="javascript:;">註冊</a></span>
+                    </div>
+                </div>
+            </nav>
+            <!-- 手機選單 -->
+            <section class="my_home">
+                <div class="welcome">
+                    <div class="banner_frame">
+                        <div class="tpi_search">
+                            <h3>輕鬆享受台北一日悠閒</h3>
+                            <p>
+                                探索每個角落，體驗城市的深度旅遊行程
+                            </p>
+                            <label for="site-search"></label>
+                            <input type="text"
+                                   id="SearchKey"
+                                   name="q"
+                                   placeholder="輸入景點名稱查詢"
+                                   class="search_con">
+                            <button class="tpi_find" id="searchBtn" onclick="moreSearch()">
+                                <img src="{{ url_for('static',filename='images/icon_searchsearch.svg')}}"
+                                     alt="搜尋">
+                            </button>
+                        </div>
+                        <div class="temple">
+                            <img src="{{ url_for('static',filename='images/welcome 1.png')}}">
+                        </div>
+                    </div>
+                </div>
+            </section>
+           
+                <section class="my_box" id="mains">
+                    <!-- <div class="box_item">
                <img src="https://picsum.photos/id/684/260/220" alt="圖片">
                 <h2 class="tpi_view">平安鐘</h2>
                 <div class="point"><span class="site_name">忠孝復興</span><span class="site_class">公共藝術<span></div>  
-            </div> -->
-            <div class="loading-icon" id="loading-icon"></div>
-        </section>
-
-        
-        <footer id="footer">
-            <p class="copyright">COPYRIGHT © 2022 台北一日遊</p>
-        </footer>
-    </div>
-    <script src="{{url_for('static',filename='js/index.js')}}"></script>
-</body>
+</div> -->
+                </section>
+            
+            <footer id="footer">
+                <p class="copyright">
+                    COPYRIGHT © 2022 台北一日遊
+                </p>
+            </footer>
+        </div>
+        <script src="{{url_for('static',filename='js/index.js')}}"></script>
+    </body>
 </html>

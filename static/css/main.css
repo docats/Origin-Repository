@@ -63,9 +63,24 @@ body{
 }
 
 .my_nav{
+    /* max-width:1200px; */
+    /* display: flex;
+    justify-content: space-between; */
+    padding:15px 0;
+    margin:0 auto;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index:9999;
+    background-color:#fff;
+    opacity: .8;
+}
+
+.nav_box{
+    max-width: 1200px;
     display: flex;
     justify-content: space-between;
-    padding:40px;
+    margin:0 auto;
 }
 
 .item_wp a{
@@ -90,17 +105,18 @@ body{
 
 .welcome{
     background-image:linear-gradient(135deg, #AADDEE 0%, #66AABB 100%);
-    height: 300px;
+    height: 330px;
     display: flex;
     flex-direction: column;
     text-align: left;
     justify-content: center;
     position: relative;
+    margin:66px 0 0 0;
 }
 
-.tpi_search{
+/* .tpi_search{
     margin-left:40px;
-}
+} */
 
 .welcome h3{
     font-size: 28px;
@@ -116,8 +132,9 @@ body{
     max-width: 1200px;
     margin: 0px auto;
     display: flex;
-    justify-content: space-between;
+    justify-content:space-between;
     flex-wrap: wrap;
+    /* outline:1px solid #f00; */
 }
 
 .box{
@@ -126,9 +143,9 @@ body{
 }
 
 .box_item{
-    width:260px;
+    width:270px;
     height: auto;
-    margin:10px;
+    margin:10px 0px;
     border:1px solid #E8E8E8;
     border-radius: 5px;
 }
@@ -220,28 +237,63 @@ footer{
     line-height: 13px;
 }
 
+.banner_frame{
+    width: 1200px;
+    margin: 0 auto;
+    /* outline:1px solid #f00; */
+}
 
 /* 平板-600 像素 < 螢幕解析度的寬度 <= 1200 像素 */
 @media (max-width:1200px) {
     .my_box{
-        max-width:1200px;
-        margin:0 auto;
-        display:flex;
-        flex-wrap: wrap;
-        justify-content:center;
+    max-width:1200px;
+    margin:0 auto;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content:center;
     }
-    /* .box{
-        width:30%;
-        margin:20px;
-        
-    } */
-    /* .box_item{
-        width: 100%;
-        
-    } */
-    /* .box_item .point,.box_item img{
-        width: 100%;
-    } */
+    .nav_box,.tpi_search{
+        margin:0 30px;
+       
+    }
+    .my_home{
+        display: flex;
+    }
+
+  .my_nav{
+    width:100%;
+  }  
+  
+   .banner_frame{
+       display: block;
+   }
+   .welcome {
+    background-image: linear-gradient(135deg, #AADDEE 0%, #66AABB 100%);
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    justify-content: center;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.temple{
+    position:absolute;
+    right:-80px;
+    bottom:0;
+    width:60%;
+    height: auto;
+}
+.temple img{
+    width:100%;
+    height: auto;
+    vertical-align: bottom;
+}
+.box_item{
+    margin: 10px;
+}
+
 }
 
 /* 手機-：螢幕解析度的寬度 <= 600 像素 */
@@ -255,16 +307,19 @@ footer{
     }
     .m_my_nav{
         display: block;
-        display: flex;
-        justify-content: space-between;
-        padding:20px;
+        width:100%;
+        position: fixed;
+        top:0;
+        z-index: 9999;
+        height: auto;
+        background-color:#fff;
     }
     .m_item_wp{
         display: flex;
         justify-content: flex-end;
         /* width:50%; */
         height: auto;
-        padding:10px;
+        padding:15px;
         font-size: 16px;
     }
     .m_item_wp span{
@@ -274,7 +329,8 @@ footer{
         margin-right:10px;
     }
     .box_item{
-        width: 90%;
+        width: 270px;
+        height: auto;
     }
     .m_my_website{
         display: flex;
@@ -287,7 +343,7 @@ footer{
         color:#448899;
     }
     .search_con{
-        width: 60%;
+        width: 70%;
         height: 46px;
         border:0;
         font-size:16px;
@@ -299,7 +355,7 @@ footer{
         position:absolute;
         right:-80px;
         bottom:0;
-        width:70%;
+        width:90%;
         height: auto;
     }
     .temple img{
@@ -309,7 +365,7 @@ footer{
     }
     .welcome {
         background-image: linear-gradient(135deg, #AADDEE 0%, #66AABB 100%);
-        height: 300px;
+        height: 280px;
         display: flex;
         flex-direction: column;
         text-align: left;
@@ -318,10 +374,22 @@ footer{
         overflow-x: hidden;
     }
     .welcome p{
-        letter-spacing: 3px;
+        letter-spacing: 2px;
     }
     .my_box{
         flex-wrap: wrap;
         justify-content: center;
+    }
+    .m_nav_box{
+        display: flex;
+        justify-content: space-between;
+        padding:6px;
+    }
+    .banner_frame{
+        width:92%;
+        padding:6px;
+    }
+    .my_home{
+        display: block;
     }
 }
