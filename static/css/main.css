@@ -135,8 +135,6 @@ body{
 
 .box_item img{
     vertical-align: bottom;
-    width:100%;
-    height: 210px;
 }
 
 .box_item .point{
@@ -148,7 +146,6 @@ body{
 .box_item .tpi_view{
     font-weight: 700;
     padding: 20px;
-    color:#333;
 }
 
 .my_website .tpi_title{
@@ -172,15 +169,7 @@ body{
 
 .tpi_search{
     position: relative;
-    z-index: 999;
 }
-
-.site_name,.site_class{
-    font-size: 16px;
-    color:#757575;
-}
-
-
 
 .search_con{
     width: 400px;
@@ -188,7 +177,7 @@ body{
     border:0;
     font-size:16px;
     font-weight: 700;
-    padding:0px 0px 0px 15px;
+    padding:15px;
     border-radius: 15px 0 0 15px;
     letter-spacing: 1px;
 }
@@ -224,32 +213,19 @@ footer{
 /* 平板-600 像素 < 螢幕解析度的寬度 <= 1200 像素 */
 @media (max-width:1200px) {
     .my_box{
-        max-width:1200px;
-        margin:0 auto;
-        display:flex;
         flex-wrap: wrap;
-        justify-content:center;
+        justify-content: center;
     }
-    /* .box{
-        width:30%;
-        margin:20px;
-        
-    } */
-    /* .box_item{
+    .box_item{
+        width: 45%;
+    }
+    .box_item .point,.box_item img{
         width: 100%;
-        
-    } */
-    /* .box_item .point,.box_item img{
-        width: 100%;
-    } */
+    }
 }
 
 /* 手機-：螢幕解析度的寬度 <= 600 像素 */
 @media (max-width:600px) {
-    a{
-        color:#666;
-        text-decoration: none;
-    }
     .my_nav,.my_website{
         display: none;
     }
@@ -257,21 +233,11 @@ footer{
         display: block;
         display: flex;
         justify-content: space-between;
-        padding:20px;
     }
     .m_item_wp{
-        display: flex;
-        justify-content: flex-end;
-        /* width:50%; */
-        height: auto;
+        width:40px;
+        height: 40px;
         padding:10px;
-        font-size: 16px;
-    }
-    .m_item_wp span{
-        display: inline-block;
-    }
-    .m_item_wp .item a{
-        margin-right:10px;
     }
     .box_item{
         width: 90%;
