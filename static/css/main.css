@@ -142,11 +142,6 @@ body{
 
 .box_item img{
     vertical-align: bottom;
-<<<<<<< HEAD
-=======
-    width:100%;
-    height: 210px;
->>>>>>> d74d48c4ff220d956c49734a95b4795232b31fdc
 }
 
 .box_item .point{
@@ -158,10 +153,6 @@ body{
 .box_item .tpi_view{
     font-weight: 700;
     padding: 20px;
-<<<<<<< HEAD
-=======
-    color:#333;
->>>>>>> d74d48c4ff220d956c49734a95b4795232b31fdc
 }
 
 .my_website .tpi_title{
@@ -185,32 +176,15 @@ body{
 
 .tpi_search{
     position: relative;
-<<<<<<< HEAD
 }
 
-=======
-    z-index: 999;
-}
-
-.site_name,.site_class{
-    font-size: 16px;
-    color:#757575;
-}
-
-
-
->>>>>>> d74d48c4ff220d956c49734a95b4795232b31fdc
 .search_con{
     width: 400px;
     height: 46px;
     border:0;
     font-size:16px;
     font-weight: 700;
-<<<<<<< HEAD
     padding:15px;
-=======
-    padding:0px 0px 0px 15px;
->>>>>>> d74d48c4ff220d956c49734a95b4795232b31fdc
     border-radius: 15px 0 0 15px;
     letter-spacing: 1px;
 }
@@ -246,7 +220,6 @@ footer{
 /* 平板-600 像素 < 螢幕解析度的寬度 <= 1200 像素 */
 @media (max-width:1200px) {
     .my_box{
-<<<<<<< HEAD
         flex-wrap: wrap;
         justify-content: center;
     }
@@ -256,37 +229,10 @@ footer{
     .box_item .point,.box_item img{
         width: 100%;
     }
-=======
-        max-width:1200px;
-        margin:0 auto;
-        display:flex;
-        flex-wrap: wrap;
-        justify-content:center;
-    }
-    /* .box{
-        width:30%;
-        margin:20px;
-        
-    } */
-    /* .box_item{
-        width: 100%;
-        
-    } */
-    /* .box_item .point,.box_item img{
-        width: 100%;
-    } */
->>>>>>> d74d48c4ff220d956c49734a95b4795232b31fdc
 }
 
 /* 手機-：螢幕解析度的寬度 <= 600 像素 */
 @media (max-width:600px) {
-<<<<<<< HEAD
-=======
-    a{
-        color:#666;
-        text-decoration: none;
-    }
->>>>>>> d74d48c4ff220d956c49734a95b4795232b31fdc
     .my_nav,.my_website{
         display: none;
     }
@@ -294,29 +240,11 @@ footer{
         display: block;
         display: flex;
         justify-content: space-between;
-<<<<<<< HEAD
     }
     .m_item_wp{
         width:40px;
         height: 40px;
         padding:10px;
-=======
-        padding:20px;
-    }
-    .m_item_wp{
-        display: flex;
-        justify-content: flex-end;
-        /* width:50%; */
-        height: auto;
-        padding:10px;
-        font-size: 16px;
-    }
-    .m_item_wp span{
-        display: inline-block;
-    }
-    .m_item_wp .item a{
-        margin-right:10px;
->>>>>>> d74d48c4ff220d956c49734a95b4795232b31fdc
     }
     .box_item{
         width: 90%;
@@ -326,8 +254,6 @@ footer{
         align-items: center;
         padding:10px;
     }
-<<<<<<< HEAD
-=======
     .m_my_website h1{
         font-size: 30px;
         font-weight: 700;
@@ -371,5 +297,4 @@ footer{
         flex-wrap: wrap;
         justify-content: center;
     }
->>>>>>> d74d48c4ff220d956c49734a95b4795232b31fdc
 }
