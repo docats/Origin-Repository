@@ -116,12 +116,6 @@ body{
     max-width: 1200px;
     margin: 0px auto;
     display: flex;
-<<<<<<< HEAD
-    justify-content: center;
-}
-
-.box_item{
-=======
     justify-content: space-between;
     flex-wrap: wrap;
 }
@@ -134,7 +128,6 @@ body{
 .box_item{
     width:260px;
     height: auto;
->>>>>>> d74d48c4ff220d956c49734a95b4795232b31fdc
     margin:10px;
     border:1px solid #E8E8E8;
     border-radius: 5px;
