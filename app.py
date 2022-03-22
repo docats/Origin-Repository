@@ -29,28 +29,37 @@ def thankyou():
 #建立旅遊景點API(頁數和關鍵字)&route
 @app.route("/api/attractions",methods=["GET"])
 def api_attr():	
-	page=request.args.get('page') #輸入甚麼頁數就得到第幾頁(當前頁面)
+	page=request.args.get('page',0) #輸入甚麼頁數就得到第幾頁(當前頁面)
 	print('page123:',page)
 	keyword=request.args.get('keyword') #會去抓關鍵字
+	print("keyword:",keyword)
 	#如果關鍵字有，將執行下列判斷
+	print("page:",page)
 	if keyword!=None:
-			ender=(int(page)+1)*12 #12
-			page=ender-12 #12筆資料
+			# ender=(int(page)+1)*12 #12
+			# page=ender-12 #12筆資料
 			#netpage是當前的頁面+1(目標)
-			vpage=ender-1 #-11		
+			# vpage=ender-1 #-11		
    
-			print("here","page:",page,"ender:",ender,"vpage:",vpage)
+			# print("here","page:",page,"ender:",ender,"vpage:",vpage)
 			#到資料庫去撈資料
 			with mydb.cursor(pymysql.cursors.DictCursor) as cursor:
-				got=cursor.execute("""
-				SELECT id,name,category2,description,address,transport,mrt,latitude,longitude,images
-				FROM sites WHERE name like %s LIMIT %s,%s""",(("%"+keyword+"%"),page,ender))
+       
+				# sql="SELECT * FROM `viewsite`.`sites` WHERE name LIKE '%s' LIMIT %s,12"%("%"+keyword+"%",page)
+				# print("sql:",sql)
+				offsetCount = (int(page)+1) 
+				print("offsetCount:",offsetCount)
+				sql="SELECT * from sites where `name` like %s limit 12 offset %s"
+				cursor.execute(sql,('%'+keyword+'%',offsetCount,))
+				# cursor.execute("SELECT * FROM sites WHERE name LIKE %s LIMIT %s,12",("%"+keyword+"%",page*12,))
 				result=cursor.fetchall() #取出全部資料並放到result中
+				print("result132:",result)
 				# print("result:",result,type(result))
 				count=cursor.rowcount #查詢究竟有哪幾筆資料
+				
 				mydb.commit() #送出到資料庫
-				print("got:",got)
-				if got!=0:
+				
+				if result!=None:
 					summary=[] #建立一個列表
 					if count<12:
 						for site in result:
@@ -95,12 +104,15 @@ def api_attr():
 							page=request.args.get('page') #輸入甚麼頁數就得到第幾頁
 							
 							summary.append(tpidata)
-							final={"nextPage":int(ender)-int(vpage),"data":summary} #12+1 測試 (請問這是對的嗎?分頁怎麼看?)
-					return jsonify(final)
+							# final={"nextPage":int(ender)-int(vpage),"data":summary} #12+1 測試 (請問這是對的嗎?分頁怎麼看?)
+							
+							
+							final={"nextPage":int(page)+1,"data":summary}
+							return jsonify(final)
 				return jsonify({"error":True,"message":"查無資料"})
 	else:
-		if page==None:
-				page=0
+		# if page==None:
+		# 		page=0
 		ender=((int(page)+1)*12) #當前頁面+1並*12
 		# page=ender-11
 		cpage=ender/12
@@ -108,17 +120,16 @@ def api_attr():
 		print("ender:",ender)
 		print("page==None:",page)
 		with mydb.cursor(pymysql.cursors.DictCursor) as cursor:
-			got=cursor.execute("""SELECT id,name,category2,description,address,transport,mrt,latitude,longitude,images FROM sites WHERE id>=%s AND id<=%s """,(page,ender))
+			cursor.execute("SELECT * FROM sites LIMIT %s,12 ",(int(page)*12,))
 			result=cursor.fetchall()
-			count=cursor.rowcount
+			count=cursor.rowcount #查詢究竟有哪幾筆資料
 			mydb.commit()
-			if got != 0:
+			if result != None:
 				summary=[]
 				if count<12:
 					for site in result:
 						tpidata={"id":site["id"],"name":site["name"],"category":site["category2"],"description":site["description"],"address":site["address"],"transport":site["transport"],"mrt":site["mrt"],"latitude":site["latitude"],"longitude":site["longitude"],"images":json.loads(site["images"].replace("'","\""))}
 						summary.append(tpidata)
-						
 					final={"nextPage":None,"data":summary}
 					return jsonify(final)
 				for site in result:
@@ -127,7 +138,7 @@ def api_attr():
 					summary.append(tpidata)
 
 				# final={"nextPage":int(ender)//12,"data":summary}
-				final={"nextPage":int(cpage),"data":summary}
+				final={"nextPage":int(cpage),"data":summary} #nextpage下一頁
 				return jsonify(final)
 			return jsonify({"error":True,"message":"查無資料"})
 
