@@ -29,25 +29,17 @@ def thankyou():
 #建立旅遊景點API(頁數和關鍵字)&route
 @app.route("/api/attractions",methods=["GET"])
 def api_attr():	
-	page=request.args.get('page',0) #輸入甚麼頁數就得到第幾頁(當前頁面)
+	page=request.args.get('page',0) #輸入甚麼頁數就得到第幾頁(當前頁面)，這邊已經先把page=0
 	print('page123:',page)
 	keyword=request.args.get('keyword') #會去抓關鍵字
 	print("keyword:",keyword)
 	#如果關鍵字有，將執行下列判斷
 	print("page:",page)
 	if keyword!=None:
-			# ender=(int(page)+1)*12 #12
-			# page=ender-12 #12筆資料
-			#netpage是當前的頁面+1(目標)
-			# vpage=ender-1 #-11		
-   
-			# print("here","page:",page,"ender:",ender,"vpage:",vpage)
 			#到資料庫去撈資料
 			with mydb.cursor(pymysql.cursors.DictCursor) as cursor:
-       
-				# sql="SELECT * FROM `viewsite`.`sites` WHERE name LIKE '%s' LIMIT %s,12"%("%"+keyword+"%",page)
-				# print("sql:",sql)
-				offsetCount = (int(page)+1) 
+				# offsetCount = (int(page)-1)*12
+				offsetCount = (int(page))*12
 				print("offsetCount:",offsetCount)
 				sql="SELECT * from sites where `name` like %s limit 12 offset %s"
 				cursor.execute(sql,('%'+keyword+'%',offsetCount,))
@@ -56,59 +48,26 @@ def api_attr():
 				print("result132:",result)
 				# print("result:",result,type(result))
 				count=cursor.rowcount #查詢究竟有哪幾筆資料
-				
 				mydb.commit() #送出到資料庫
-				
-				if result!=None:
+				if result!=None:  
 					summary=[] #建立一個列表
-					if count<12:
-						for site in result:
-							# print('site["images"]',site["images"])
-							tpidata={"id":site["id"],
-							"name":site["name"],
-							"category":site["category2"],
-							"description":site["description"],
-							"address":site["address"],
-							"transport":site["transport"],
-							"mrt":site["mrt"],
-							"latitude":site["latitude"],
-							"longitude":site["longitude"],
-							"images":json.loads(site["images"].replace("'","\"")) #json不接受''當字串，因故使用\"跳脫字元
-							}
-							
-       
-							# tpidata["images"] = json.dumps(tpidata["images"]) #j變成字串
-							# tpidata["images"]=json.loads(tpidata["images"])
-							
-							# k=json.loads(j) #變字典
-							
-							# print("tpidata:",tpidata["images"],type(tpidata["images"]))
-							# print("123:",tpidata["images"],type(tpidata["images"]))
-							summary.append(tpidata)
-							final={"nextPage":None,"data":summary}
-							return jsonify(final)
-					
 					for site in result:
-							tpidata={"id":site["id"],
-							"name":site["name"],
-							"category":site["category2"],
-							"description":site["description"],
-							"address":site["address"],
-							"transport":site["transport"],
-							"mrt":site["mrt"],
-							"latitude":site["latitude"],
-							"longitude":site["longitude"],
-							"images":json.loads(site["images"].replace("'","\"")) #json不接受''當字串，因故使用\"跳脫字元
-							}
-							# tpidata["images"]=json.loads(tpidata["images"]) #轉換json格式
-							page=request.args.get('page') #輸入甚麼頁數就得到第幾頁
-							
-							summary.append(tpidata)
-							# final={"nextPage":int(ender)-int(vpage),"data":summary} #12+1 測試 (請問這是對的嗎?分頁怎麼看?)
-							
-							
-							final={"nextPage":int(page)+1,"data":summary}
-							return jsonify(final)
+						tpidata={"id":site["id"],
+						"name":site["name"],
+						"category":site["category2"],
+						"description":site["description"],
+						"address":site["address"],
+						"transport":site["transport"],
+						"mrt":site["mrt"],
+						"latitude":site["latitude"],
+						"longitude":site["longitude"],
+						"images":json.loads(site["images"].replace("'","\"")) #json不接受''當字串，因故使用\"跳脫字元
+						}
+						summary.append(tpidata)
+						# final={"nextPage":None,"data":summary}
+					if(len(summary)<12): #當資料小於12筆(資料是0-11開始)
+						return jsonify({"nextPage":None,"data":summary}) #少於12筆沒有分頁
+					return jsonify({"nextPage":int(page)+1,"data":summary}) #下一頁		
 				return jsonify({"error":True,"message":"查無資料"})
 	else:
 		# if page==None:

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/main.css')}}">
+    <title>attraction</title>
+</head>
+<body>
+     <!-- 桌機選單 開始-->
+    <div class="wp_top">
+        <nav class="page_top">
+            <div class="my_website">
+                <h1 class="tpi_title">台北一日遊</h1>
+            </div>
+            <div class="item_wp">
+                <span class="item"><a href="javascript:;">預定行程</a></span>
+                <span class="item_func"><a href="javascript:;">登入</a>&nbsp;&#47;<a href="javascript:;">註冊</a></span>
+            </div>
+        </nav>
+    </div>
+    <section class="view_con">
+        <div class="rel_box">
+            <div class="rel_img">
+                <img src="https://picsum.photos/id/684/540/406" alt="">
+            </div>
+            <div class="attr_box">
+                <h2 class="tpi_view">新北投溫泉區</h2>
+                
+            </div>
+        </div>
+    </section>
+     <!-- 桌機選單 結束-->
+     <!-- 手機選單 開始-->
+
+     <!-- 手機選單 結束-->
+    <script src="{{url_for('static',filename='js/attraction.js')}}"></script>
+</body>
+</html>

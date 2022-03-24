@@ -131,15 +131,16 @@ body{
 .my_box{
     max-width: 1200px;
     margin: 0px auto;
-    display: flex;
+    /* display: flex;
     justify-content:space-between;
-    flex-wrap: wrap;
+    flex-wrap: wrap; */
     /* outline:1px solid #f00; */
 }
 
 .box{
     text-decoration: none;
-    display: block;
+    display:inline-block;
+    margin:0 14px;
 }
 
 .box_item{
@@ -242,6 +243,45 @@ footer{
     margin: 0 auto;
     /* outline:1px solid #f00; */
 }
+/* attraction頁面 */
+
+.wp_top{
+    width:100%;
+    height: auto;
+    border-bottom: 1px solid #E8E8E8;
+}
+
+.page_top{
+    max-width: 1200px;
+    margin:0 auto;
+    display: flex;
+    padding: 15px;
+    justify-content: space-between;
+    /* outline: 1px solid #f00; */
+}
+
+.view_con{
+    max-width: 1200px;
+    margin: 30px auto;
+    /* outline: 1px solid #f00; */
+}
+
+.rel_box{
+    display:flex;
+}
+
+.rel_img img{
+    vertical-align: bottom;
+    border-radius: 5px;
+}
+
+.nodata{
+    text-align: center;
+}
+
+
+
+/* attraction頁面 */
 
 /* 平板-600 像素 < 螢幕解析度的寬度 <= 1200 像素 */
 @media (max-width:1200px) {

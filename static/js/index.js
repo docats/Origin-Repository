@@ -2,7 +2,7 @@
 const content = document.querySelector(".my_box");
 
 //初始化
-let page = 0;
+let page = 0; //預設頁面一載入page就是第0頁
 const footer = document.getElementById("footer");
 const search = document.getElementById("searchBtn");
 // const loadingIcon = document.getElementsByClassName("loading-icon")[0];
@@ -34,9 +34,6 @@ fetch('/api/attractions?page=0', { method: 'get' })
 // 景點頁面
 function tpiView(datas) {
   let data = datas.data;
-
-  console.log("你是24筆嗎?",data)
-
   for (site of data) {
     //圖片
     let pic = site["images"][0];
@@ -76,6 +73,7 @@ function tpiView(datas) {
     // console.log(pic_img.src = pic); //跑圖片
     //用JS建立網頁，把資料塞進去。
     pic_img.src = pic;
+  
     content.appendChild(box).appendChild(box_item).appendChild(pic_img);
     content.appendChild(box).appendChild(box_item).appendChild(tpi_view);
     content.appendChild(box).appendChild(box_item).appendChild(tpi_view).appendChild(view_name);
@@ -84,38 +82,31 @@ function tpiView(datas) {
   }
 }
 
-
-
-//window scroll 記得優化
+//window scroll 
 window.addEventListener("scroll", () => {
-
   if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
     console.log("scroll test 我有轉動");
-    //
     console.log("滾動next下一頁:", next);
-    // next = datas.nextPage;
-    if (next != null) {                      
+    if (next != null) {
       if (next > 0) {
         let src;
-        console.log("next?:",next)
-        
-        src='/api/attractions?page=' + next
-        console.log("9999:",src);
+        console.log("next?:", next)
+        src = '/api/attractions?page=' + next
+        console.log("9999:", src);
         if (words == undefined) {
           fetch(src)
-            .then(function (response) { 
+            .then(function (response) {
               //處理response
               if (!response.ok) throw new Error(response.statusText)
               return response.json();
             })
             .then(function (datas) {
-              // next = 0;
               next = datas.nextPage;
-              console.log("text:",next);
+              console.log("text:", next);
               let data = datas.data;
               console.log("一開抓API景點的下一頁:", next);
               tpiView(datas);
-              console.log("你是24筆嗎?",data)
+              console.log("你是24筆嗎?", data)
             })
         } else {
           fetch('/api/attractions?page=' + next + "&keyword=" + words)
@@ -125,7 +116,6 @@ window.addEventListener("scroll", () => {
               return response.json();
             })
             .then(function (datas) {
-              // next = 0;
               next = datas.nextPage;
               console.log("一開抓API景點的下一頁:", next);
               tpiView(datas);
@@ -139,28 +129,26 @@ window.addEventListener("scroll", () => {
 
 //搜尋關鍵字跟下一頁 moreSearch()
 function moreSearch() {
-  // next = 0;
   document.getElementById("mains").innerHTML = "";
   words = document.getElementById("SearchKey").value;
-  fetch("/api/attractions?page=" + next + "&keyword=" + words)
+  fetch("/api/attractions?page=" + page + "&keyword=" + words)
     .then(function (response) {
       return response.json();
     })
     .then(function (datas) {
-      if (datas.error == true) {
+      if (datas.data.length == 0) {   //我用陣列長度去判斷關鍵字不存在
         document.getElementById("mains").innerHTML = "";
-        document.getElementById("mains").innerHTML = "查無資料";
+        document.getElementById("mains").innerHTML = `<p class="nodata">查無資料</p>`;
       } else {
         next = datas.nextPage;
+        console.log("下一頁:", next)
         let data = datas;
         console.log("moreSearch_data:", data); //可跑出搜尋資料
         tpiView(datas);
       }
+
     })
 }
 
-// 點擊即可以顯示目標id
-// target = (id) => {
-//   console.log(id);
-// }
+
 
