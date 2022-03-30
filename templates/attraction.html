@@ -8,8 +8,9 @@
     <title>attraction</title>
 </head>
 <body>
-     <!-- 桌機選單 開始-->
+     
     <div class="wp_top">
+        <!-- 桌機選單 開始-->
         <nav class="page_top">
             <div class="my_website">
                 <h1 class="tpi_title">台北一日遊</h1>
@@ -20,21 +21,80 @@
             </div>
         </nav>
     </div>
-    <section class="view_con">
+        <!-- 桌機選單 結束-->
+
+        <!-- 手機選單 開始-->
+
+        <!-- 手機選單 結束-->    
+
+    <!-- 桌機版 -->
+    <section class="view_con" id="view_con">
         <div class="rel_box">
-            <div class="rel_img">
-                <img src="https://picsum.photos/id/684/540/406" alt="">
+            <div class="rel_img" id="rel_img">
+                <!-- <a href="#"><div class="pic_left"><</div></a>
+                <a href="#"><div class="pic_right">></div></a>
+                <img src= alt=""> -->
+                <a href="#" class="pic_left"><div  style="cursor:grab;"><</div></a>
+                <a href="#" class="pic_right"><div  style="cursor:grab;">></div></a>
+                 <div class="pic_rel"></div>
+                 <div class="dot_box">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+               
             </div>
             <div class="attr_box">
-                <h2 class="tpi_view">新北投溫泉區</h2>
+                <div class="info_box"><h2 class="tpi_view" id="tpi_view"></h2>
+                    <p class="this_view"><span id="cat">
+                        
+                    </span> at <span id="mrt"></span></p></div>
                 
+                <div class="order_box">
+                    <p class="order_text">訂購導覽行程</p>
+                    <p class="order_slogn">以此景點為中心的一日行程，帶您探索城市角落故事</p>
+                    <!-- <form action=""> -->
+                        <label for="order_date" class="order_text m_span">選擇日期：</label>
+                        <input type="date" id="order_date" name="order_date"><br>
+                       <label class="order_text m_span">選擇時間：</label>
+                       
+                       <input type="radio" name="selected" id="first_half_day" value="新台幣2000元" onclick="selectFee()" checked>
+                       <label for="first_half_day">上半天</label>
+                       
+                       <input type="radio" name="selected" id="sec_half_day" value="新台幣2500元" onclick="selectFee()">
+                       <label for="sec_half_day">下半天</label>
+                       <br>
+                       <label for="fee" class="order_text m_span">導覽費用：</label>
+                       <label name="order_date" id="show_fee"></label><br>
+                       <input type="submit" value="開始預訂行程" class="order_this">
+                    <!-- </form> -->
+                </div>
             </div>
         </div>
     </section>
-     <!-- 桌機選單 結束-->
-     <!-- 手機選單 開始-->
+    <!-- 桌機版 -->
 
-     <!-- 手機選單 結束-->
+    
+    <section class="view_dec_box" id="view_dec_box">
+        <div class="view_box">
+            <p class="view_dec" id="atr_con"></p>
+            <h3 class="order_text view_space">景點地址：</h3>
+            <p class="view_dec" id="atr_address"></p>
+            <h3 class="order_text view_space">交通方式：</h3>
+            <p class="view_dec" id="atr_traffic"></p>
+        </div>
+        
+    </section>
+    
+
+     <!-- footer start -->
+     <footer id="footer" class="m_footer">
+        <p class="copyright">
+            COPYRIGHT © 2022 台北一日遊
+        </p>
+    </footer>
+
+     <!-- footer end-->
     <script src="{{url_for('static',filename='js/attraction.js')}}"></script>
 </body>
 </html>
