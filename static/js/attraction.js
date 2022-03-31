@@ -130,69 +130,6 @@ function picShow(pic) {
     }
     slides[slideIndex - 1].style.display = "block";
     dots[slideIndex - 1].className += " active"; //讓黑點動
-    
-    
-    
-
-
-
-    //  //抓出全部圖片
-    //  data=datas.data.images;
-    //  console.log("data:",data);
-    //  //用for迴圈把圖片全部抓出來
-    //  for(i=0;i<data.length;i++){
-    //      //在每張圖片裡加一個div，建立外框pic_item
-    //      let picItem = document.createElement("div");
-    //      picItem.setAttribute("class","pic_item");
-
-    //     //  建立一個img元素，並放入newImage物件，之後設定圖片路徑
-    //    const newImage =document.createElement('img');
-    //    newImage.setAttribute('src',`${data[i]}`)
-    //     //讓圖片一張一張抓出來
-    //     // let showpic=relImg.appendChild(slides).appendChild(picItem).appendChild(newImage);
-    //     // console.log("印整列showpic:",showpic);
-
-    // pic=document.getElementsByClassName("pic_item"); //getElementsByClassName要用此法才能抓到長度
-    //     console.log("型態pic:",typeof(pic)) //型態是物件
-    //     console.log("pic:",pic);
-    //  }
-    //  console.log("pic在for迴圈外:",pic.length) //pic的長度
-    //  if(data.length >= pic.length){
-    //     slideIndex=1;
-    //     console.log("pic.length:123", slideIndex) //這邊開始不會跑了
-    //  }
-    //  if(data.length<1){
-    //     slideIndex=pic.length;
-    //  }
-
-    //  for(i=0;i<pic.length;i++){
-    //     pic[i].style.display="none";
-    //  }
-
-    //  //抓圖片上的換頁框
-    // let dotBox=document.getElementsByClassName("dot_box");
-    // let dots=document.createElement("span");
-    //     dots.setAttribute("class","dot");
-    //     console.log("dots:",dots);
-
-    // // console.log("dots預設長度:",dots.length);
-    // // let dd=document.getElementsByClassName("dot");
-    // // console.log("dd:",dd);
-    //     //因為dots.length是undefined所以跑不出來點點
-    //     if(data=0){
-    //         let test=relImg.appendChild(dotBox).appendChild(dots);
-    //         console.log("test:",test);
-    //         for(i=0;i<dots.length;i++){
-    //             // dotBox.appendChild(dots[i]);
-    //             let dd=document.getElementsByClassName("dot");
-    //             console.log("dd[i]:",dd[i]);
-    //             dots[i].className = dots[i].className.replace(" active", "");
-    //          }
-    //     }
-
-
-    //  pic[slideIndex-1].style.display="block";
-    // //  dots[slideIndex-1].className +=" active";
 
 }
 
