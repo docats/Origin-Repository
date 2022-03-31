@@ -34,13 +34,21 @@
                 <!-- <a href="#"><div class="pic_left"><</div></a>
                 <a href="#"><div class="pic_right">></div></a>
                 <img src= alt=""> -->
-                <a href="#" class="pic_left"><div  style="cursor:grab;"><</div></a>
-                <a href="#" class="pic_right"><div  style="cursor:grab;">></div></a>
-                 <div class="pic_rel"></div>
+                <a href="#" class="pic_left"><div style="cursor:point;" onclick="plusSlides(-1)"><</div></a>
+                <a href="#" class="pic_right"><div style="cursor:point;" onclick="plusSlides(1)">></div></a>
+                 <div class="pic_rel">
+                    <!-- <div class="pic_item"><img src="https://www.travel.taipei/d_upload_ttn/sceneadmin/pic/11000848.jpg"></div>
+                    <div class="pic_item"><img src="https://www.travel.taipei/d_upload_ttn/sceneadmin/pic/11002891.jpg"></div>
+                    <div class="pic_item"><img src="https://www.travel.taipei/d_upload_ttn/sceneadmin/image/a0/b0/c0/d315/e70/f65/1e0951fb-069f-4b13-b5ca-2d09df1d3d90.jpg"></div> -->
+                </div>
                  <div class="dot_box">
+                    <!-- <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span> -->
+                     <!-- 輪播球 -->
+                    <!-- 
                     <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
+                    <span class="dot"></span> -->
                 </div>
                
             </div>
@@ -56,14 +64,20 @@
                     <!-- <form action=""> -->
                         <label for="order_date" class="order_text m_span">選擇日期：</label>
                         <input type="date" id="order_date" name="order_date"><br>
-                       <label class="order_text m_span">選擇時間：</label>
                        
-                       <input type="radio" name="selected" id="first_half_day" value="新台幣2000元" onclick="selectFee()" checked>
-                       <label for="first_half_day">上半天</label>
                        
-                       <input type="radio" name="selected" id="sec_half_day" value="新台幣2500元" onclick="selectFee()">
-                       <label for="sec_half_day">下半天</label>
-                       <br>
+                        <label class="order_text m_span">選擇時間：</label>
+                        
+                        <label for="first_half_day" class="order_day">上半天
+                            <input type="radio" name="selected" class="one" id="first_half_day" value="新台幣2000元" onclick="selectFee()" checked>
+                            <span class="checkmark"></span>
+                        </label>
+                        
+                        <label for="sec_half_day" class="order_day">下半天
+                            <input type="radio" name="selected" class="two" id="sec_half_day" value="新台幣2500元" onclick="selectFee()">
+                            <span class="checkmark"></span>
+                        </label>
+                      <br>
                        <label for="fee" class="order_text m_span">導覽費用：</label>
                        <label name="order_date" id="show_fee"></label><br>
                        <input type="submit" value="開始預訂行程" class="order_this">
