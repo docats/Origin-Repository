@@ -171,10 +171,10 @@ async def userStatus():
                 "SELECT email FROM member where email=%s", (email,))
             cursor.close()  # 不用cursor會打架
             # mydb.commit() #確定要更新資料庫
-
+            
             if got != 0:
                 print("帳號已經被註冊")
-                mydb.close()
+               
                 return Response(json.dumps(
                     {"error": True,
                      "message": "帳號已經被註冊"}),
@@ -185,16 +185,12 @@ async def userStatus():
                         "INSERT INTO member(name,email,password) VALUES (%s,%s,%s)", (name, email, password))
                     mydb.commit()  # 確定要更新資料庫
                     print("結果:", result)
-                    if got == 0:  # 帳號或密碼打錯字
-                        print("註冊失敗，帳號或密碼錯誤")
-                        return Response(json.dumps(
-                            {"error": True,
-                             "message": "註冊失敗，帳號或密碼錯誤"}),
-                            status=400, mimetype='application/json')
-                    elif got == 1:
-                        print("新增", result, "筆，恭喜記錄成功")
-                        return Response(json.dumps(
-                            {"ok": True}), status=200, mimetype='application/json')
+                    print("got:",got)
+                    print("新增", result, "筆，恭喜記錄成功")
+                    return Response(json.dumps(
+                    {"ok": True}), status=200, mimetype='application/json')
+                    
+                        
     # 登入後的使用者狀態
     if request.method == 'GET':
         if session.get("email"):
