@@ -71,7 +71,7 @@ body{
     position: fixed;
     top: 0;
     width: 100%;
-    z-index:9999;
+    z-index:300;
     background-color:#fff;
     opacity: .8;
 }
@@ -113,10 +113,6 @@ body{
     position: relative;
     margin:66px 0 0 0;
 }
-
-/* .tpi_search{
-    margin-left:40px;
-} */
 
 .welcome h3{
     font-size: 28px;
@@ -169,10 +165,12 @@ body{
     color:#333;
 }
 
-.my_website .tpi_title{
+.my_website .tpi_title a{
     font-weight: 700;
     font-size: 30px;
     color:#448899;
+    text-decoration: none;
+    display: block;
 }
 
 .tpi_find{
@@ -190,15 +188,13 @@ body{
 
 .tpi_search{
     position: relative;
-    z-index: 999;
+    z-index: 100;
 }
 
 .site_name,.site_class{
     font-size: 16px;
     color:#757575;
 }
-
-
 
 .search_con{
     width: 400px;
@@ -238,6 +234,11 @@ footer{
     line-height: 13px;
 }
 
+.alert{
+    color:#f00;
+    font-weight: bold;
+}
+
 .banner_frame{
     width: 1200px;
     margin: 0 auto;
@@ -251,7 +252,7 @@ footer{
     border-bottom: 1px solid #E8E8E8;
     position: fixed;
     top:0px;
-    z-index: 9999;
+    z-index: 999;
     background-color: #fff;
 }
 
@@ -360,7 +361,7 @@ footer{
     height: 36px;
     background-color:#fff;
     opacity: .8;
-    z-index: 9999;
+    z-index: 999;
     border-radius: 50%;
     color:#666;
     font-size: 26px;
@@ -464,11 +465,112 @@ footer{
   border-radius: 50%;
 }
 
-
-
-
-
 /* attraction頁面 */
+
+/* member會員登入頁面設定 */
+.member_wrap{
+    z-index: 9999;
+    width:100%;
+    height: 100%;
+    background:rgba(0, 0, 0, 0.25);
+    position: fixed;
+    transform: 0.5s;
+    top:0;
+}
+.person_signin_box,.person_reg_box{
+    width: 340px;
+    min-height: 275px;
+    height: auto;
+    border-radius: 6px;
+    background-color: #fff;
+    box-shadow: 0px 4px 60px #aaa;
+    position: relative;
+    top:20%;
+    right:0;
+    bottom:0;
+    left:0;
+    margin:auto;
+}
+.person_reg_box{
+    min-height: 332px;
+    height: auto;
+}
+.person_signin_box::before,.person_reg_box::before{
+    content: "";
+    display: block;
+    position:absolute;
+    top:0;
+    width: 340px;
+    height: 10px;
+    background:linear-gradient(270deg, #337788 0%, #66AABB 100%);
+    border-radius:4px 4px 0 0 ;
+}
+.signin_frame{
+    margin:0px auto;
+}
+.signin_words h3{
+    margin-bottom:10px;
+    font-weight: 700;
+    font-size: 24px;
+    color:#666;
+}
+.signin_words,.signin_frame{
+    text-align: center;
+}
+.signin_words,.email,.psw,.sign_btn_box{
+   margin:5px 0; 
+}
+.name,.email,.psw{
+    padding:15px;
+    width:280px;
+    height: 17px;
+    line-height: 17px;
+    border-radius: 5px;
+    border:1px solid #ccc;
+    font-size: 16px;
+    color:#666;
+}
+.signupbtn,.reg_btn{
+    background-color:#448899;
+    width: 310px;
+    height: 47px;
+    line-height: 47px;
+    border-radius: 5px;
+    border:0;
+    font-size: 19px;
+    color:#fff;
+    font-weight: 400;
+    cursor: pointer;
+}
+.signupbtn,.reg_btn:hover{
+    background-color:#427380;
+}
+.signin_notice{
+    padding:5px 0;
+    font-size: 16px;
+    color:#666;
+    letter-spacing: 1px;
+}
+
+.signin_notice span>a{
+    display: inline-block;
+    color:#666;
+    text-decoration: none;
+}
+
+.signin_notice span>a:hover{
+    color:#448899;
+    text-decoration:underline;
+}
+
+.signin_close a{
+    display: block;
+    position: relative;
+    left:140px;
+    top:26px;
+}
+
+/* member會員登入頁面設定 */
 
 /* 平板-600 像素 < 螢幕解析度的寬度 <= 1200 像素 */
 @media (max-width:1200px) {

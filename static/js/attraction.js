@@ -15,6 +15,7 @@ fetch('/api/' + id) //id=app.py的attractionId
         //處理response
         return response.json();
     })
+        //這邊才是拿到真正的資料
     .then(function (datas) {
         console.log("datas:是api", datas);
         viewdata(datas)
