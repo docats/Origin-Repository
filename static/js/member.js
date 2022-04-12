@@ -45,30 +45,31 @@ menbRegister.addEventListener("click", function () {
 
 //手機版
 
-m_mebLogin.addEventListener("click", function () {
-    loginWrap.style.display = "block";
-});
+// m_mebLogin.addEventListener("click", function () {
+//     loginWrap.style.display = "block";
+// });
 
-m_menbRegister.addEventListener("click", function () {
-    regWrap.style.display = "block";
-});
+// m_menbRegister.addEventListener("click", function () {
+//     regWrap.style.display = "block";
+// });
 
 let reg_btn = document.querySelector(".reg_btn"); //按鈕註冊
-let signupbtn = document.querySelector(".signupbtn")//按鈕登入
 
 
 
+const signupbtn = document.querySelector(".signupbtn")//按鈕登入
+signupbtn.addEventListener("click", memberStatus, false);
 //登入使用者帳戶 PATCH
-signupbtn.addEventListener("click", function () {
+function memberStatus() {
 
     //如果帳號密碼打錯，出現重新輸入帳號密碼
     //如果帳號密碼都對，出現登入成功
     let ename = document.querySelectorAll(".email")[0].value;
     let pname = document.querySelectorAll(".psw")[0].value;
     let verify = document.querySelectorAll(".email")[0].pattern;
-    let regSuccess=document.getElementById("reg_success") //登入成功
-    let regFail=document.getElementById("reg_fail")//登入失敗
-    let signBtnBox=document.getElementById("signBtnBox")//登入按鈕
+    let regSuccess = document.getElementById("reg_success") //登入成功
+    let regFail = document.getElementById("reg_fail")//登入失敗
+    let signBtnBox = document.getElementById("signBtnBox")//登入按鈕
     //如果帳號密碼都沒輸入，出現錯誤訊息
     fetch('/api/user', {
         body: JSON.stringify({ email: `${ename}`, psw: `${pname}` }),
@@ -81,25 +82,22 @@ signupbtn.addEventListener("click", function () {
         .then((datas) => {
             // console.log("datas:", datas.message);
             if (datas.error == true) {
-                regFail.style.display="block";
+                regFail.style.display = "block";
                 ename = document.querySelectorAll(".email")[0].value = "";
                 pname = document.querySelectorAll(".psw")[0].value = "";
                 setTimeout(function () { window.location.href = window.location.href; }, 2000)
                 // loginFail.style.display="block"
                 return
-            } else if(datas.ok == true) {
-                regSuccess.style.display="block";
-                // signBtnBox.style.display="none";
-                // ename.style.display="none";
-                // pname.style.display="none";
+            } else if (datas.ok == true) {
+                regSuccess.style.display = "block";
                 ename = document.querySelectorAll(".email")[0].value = "";
                 pname = document.querySelectorAll(".psw")[0].value = "";
-                setTimeout(get, 1000); 
+                setTimeout(get, 1000);
             }
         })
     // window.location.href=window.location.href;
 
-});
+};
 
 let emailRule = "/^\w+([\w\.\-]){1,63}\@\w+([\w\.\-])\.\w+([\w\.\-])$/";
 //驗證信箱
@@ -142,8 +140,11 @@ reg_btn.addEventListener("click", function () {
 });
 
 let logDone = document.getElementById("log_done");
-let regSuccess=document.getElementById("reg_success") //登入成功
-let regFail=document.getElementById("reg_fail")//登入失敗
+let regSuccess = document.getElementById("reg_success") //登入成功
+let regFail = document.getElementById("reg_fail")//登入失敗
+let mGETit = document.getElementById("m_GETit")//手機會員專區
+let mOut = document.getElementById("m_out")//手機會員登出
+let mLogDone = document.getElementById("m_log_done") //手機會員登入註冊
 const GETit = document.getElementById("GETit");
 GETit.addEventListener("click", get, false);
 //取得當前登入的使用者資訊 GET
@@ -164,15 +165,21 @@ function get() {
                 GETit.style.display = "inline-block";
                 mebout.style.display = "inline-block";
                 loginWrap.style.display = "none";
-                regSuccess.style.display="none";
-                regFail.style.display="none";
+                regSuccess.style.display = "none";
+                regFail.style.display = "none";
+                mGETit.style.display = "inline-block";
+                mOut.style.display = "inline-block";
+                mLogDone.style.display = "none";
             }
         })
     // window.location.href=window.location.href;
 }
-
+//桌機
 const mebout = document.getElementById("out");
 mebout.addEventListener("click", outout, false);
+//手機
+const phoneOut =document.getElementById("m_out");
+phoneOut.addEventListener("click", outout, false);
 //登出使用者帳戶(DELETE)
 function outout() {
     console.log("會員登出")
@@ -187,12 +194,15 @@ function outout() {
         })
         .then((datas) => {
             // console.log("datas:", datas);
-           
-            mebout.style.display="none";
-            logDone.style.display="inline-block";
-            GETit.style.display="none";
-            loginWrap.style.display="none";
-            
-            
+
+            mebout.style.display = "none";
+            logDone.style.display = "inline-block";
+            GETit.style.display = "none";
+            loginWrap.style.display = "none";
+            mGETit.style.display = "none";
+            mOut.style.display = "none";
+            mLogDone.style.display = "inline-block";
+
+
         })
 }
