@@ -574,6 +574,9 @@ footer{
 
 /* 平板-600 像素 < 螢幕解析度的寬度 <= 1200 像素 */
 @media (max-width:1200px) {
+    .item_wp{
+        text-align: right;
+    }
     .my_box{
     max-width:1200px;
     margin:0 auto;
@@ -695,9 +698,9 @@ input[type="date"]{
         color:#666;
         text-decoration: none;
     }
-    .my_nav{
+    /* .my_nav{
         display: none;
-    }
+    } */
     .m_my_nav{
         display: block;
         width:100%;

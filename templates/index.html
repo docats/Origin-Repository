@@ -84,21 +84,21 @@
         </nav>
         <!-- 桌機選單 -->
         <!-- 手機選單 -->
-        <nav class="m_my_nav">
+        <!-- <nav class="m_my_nav">
             <div class="m_nav_box">
                 <div class="m_my_website">
                     <h1>台北一日遊</h1>
-                    <!-- <p>探索每個角落，體驗城市的深度旅遊行程</p> -->
+                   
                 </div>
-                <div class="m_item_wp">
-                    <span class="item" id="m_GETit" style="display:none;"><a href="javascript:;">會員專區</a></span>
+                <div class="item_wp">
+                    <span class="item" id="GETit" style="display:none;"><a href="javascript:;">會員專區</a></span>
                     <span class="item"><a href="javascript:;">預定行程</a></span>
-                    <span class="item_func" id="m_log_done"><a href="javascript:;" id="m_mebLogin">登入</a>&nbsp;&#47;<a
-                            href="javascript:;" id="m_menbRegister">註冊</a></span>
-                    <span class="item" id="m_out" style="display:none;"><a href="javascript:;">會員登出</a></span>
+                    <span class="item_func" id="log_done"><a href="javascript:;" id="mebLogin">登入</a>&nbsp;&#47;<a
+                            href="javascript:;" id="menbRegister">註冊</a></span>
+                    <span class="item" id="out" style="display:none;"><a href="javascript:;">會員登出</a></span>
                 </div>
             </div>
-        </nav>
+        </nav> -->
         <!-- 手機選單 -->
         <section class="my_home">
             <div class="welcome">
@@ -137,13 +137,20 @@
     <script src="{{url_for('static',filename='js/member.js')}}"></script>
     <!-- 此為首頁登入登出 onlyfor index.html -->
     <script>
-        m_mebLogin.addEventListener("click", function () {
-            loginWrap.style.display = "block";
-        });
+        
+        //手機版
+        // m_mebLogin.addEventListener("click", function () {
+        //     loginWrap.style.display = "block";
+        // });
 
-        m_menbRegister.addEventListener("click", function () {
-            regWrap.style.display = "block";
-        });
+        // m_menbRegister.addEventListener("click", function () {
+        //     regWrap.style.display = "block";
+        // });
+
+        // mOut.addEventListener("click",function(){
+
+        // });
+        
     </script>
 </body>
 

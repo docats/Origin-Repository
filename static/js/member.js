@@ -8,7 +8,7 @@ const GETit = document.getElementById("GETit");
 // GETit.addEventListener("click", get, false);
 
 //取得當前登入的使用者資訊 GET
-window.addEventListener("load",get=()=>{
+window.addEventListener("load", get = () => {
     console.log("會員專區")
     //當使用者登入後的狀態    
     fetch('/api/user', {
@@ -30,6 +30,8 @@ window.addEventListener("load",get=()=>{
                 mGETit.style.display = "inline-block";
                 mOut.style.display = "inline-block";
                 mLogDone.style.display = "none";
+            }else{
+                mOut.style.display = "none";
             }
         })
     // window.location.href=window.location.href;
@@ -154,7 +156,7 @@ reg_btn.addEventListener("click", function () {
     let signBtnBox = document.getElementById("sign_btn_box");
     // 信箱驗證:符合信箱的格式(@前最多64字，@後的伺服器域名需要是以.來分開的格式)
     ename.placeholder = "/^\w+([\w\.\-]){1,63}\@\w+([\w\.\-])\.\w+([\w\.\-])$/";
-    
+
 
     fetch('/api/user', {
         body: JSON.stringify({ name: `${vname}`, email: `${ename}`, psw: `${pname}` }),
@@ -169,7 +171,7 @@ reg_btn.addEventListener("click", function () {
             // console.log("123:",datas)
             if (datas.error === true) {
                 inFail.style.display = "block";
-                setTimeout(function () { window.location.href = window.location.href; }, 3000)
+                setTimeout(outout , 3000)
             } else if (datas.ok === true)
                 inSuccess.style.display = "block";
             setTimeout(function () { window.location.href = window.location.href; }, 3000)
@@ -182,14 +184,12 @@ reg_btn.addEventListener("click", function () {
 
 //取得當前登入的使用者資訊 GET
 // function get() {
-   
+
 // }
 //桌機
 const mebout = document.getElementById("out");
 mebout.addEventListener("click", outout, false);
-//手機
-// const phoneOut =document.getElementById("m_out");
-// phoneOut.addEventListener("click", outout, false);
+
 //登出使用者帳戶(DELETE)
 function outout() {
     console.log("會員登出")
@@ -204,14 +204,16 @@ function outout() {
         })
         .then((datas) => {
             // console.log("datas:", datas);
-
+            //手機
+            // const phoneOut =document.getElementById("m_out");
+            // phoneOut.addEventListener("click", outout, false);
             mebout.style.display = "none";
             logDone.style.display = "inline-block";
             GETit.style.display = "none";
             loginWrap.style.display = "none";
-            mGETit.style.display = "none";
-            mOut.style.display = "none";
-            mLogDone.style.display = "inline-block";
+            // mGETit.style.display = "none";
+            // mOut.style.display = "none";
+            // mLogDone.style.display = "inline-block";
 
 
         })
