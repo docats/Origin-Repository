@@ -200,7 +200,7 @@ async def userStatus():
             print(id,name,email)
             return jsonify({"data":{"id":id,"name":name,"email":email}})            
         else:
-            print("登入失敗，甚麼資料都拿不到")
+            print("失敗，甚麼資料都拿不到")
             return jsonify({"data": None})
 
     # 我要登入
