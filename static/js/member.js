@@ -30,8 +30,6 @@ window.addEventListener("load", get = () => {
                 // mGETit.style.display = "inline-block";
                 // mOut.style.display = "inline-block";
                 // mLogDone.style.display = "none";
-            }else{
-                mOut.style.display = "none";
             }
         })
     // window.location.href=window.location.href;
