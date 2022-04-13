@@ -27,9 +27,9 @@ window.addEventListener("load", get = () => {
                 loginWrap.style.display = "none";
                 regSuccess.style.display = "none";
                 regFail.style.display = "none";
-                mGETit.style.display = "inline-block";
-                mOut.style.display = "inline-block";
-                mLogDone.style.display = "none";
+                // mGETit.style.display = "inline-block";
+                // mOut.style.display = "inline-block";
+                // mLogDone.style.display = "none";
             }else{
                 mOut.style.display = "none";
             }
