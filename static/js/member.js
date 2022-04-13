@@ -1,3 +1,40 @@
+let logDone = document.getElementById("log_done");
+let regSuccess = document.getElementById("reg_success") //登入成功
+let regFail = document.getElementById("reg_fail")//登入失敗
+let mGETit = document.getElementById("m_GETit")//手機會員專區
+let mOut = document.getElementById("m_out")//手機會員登出
+let mLogDone = document.getElementById("m_log_done") //手機會員登入註冊
+const GETit = document.getElementById("GETit");
+// GETit.addEventListener("click", get, false);
+
+//取得當前登入的使用者資訊 GET
+window.addEventListener("load",get=()=>{
+    console.log("會員專區")
+    //當使用者登入後的狀態    
+    fetch('/api/user', {
+        // body: JSON.stringify({ data }),
+        headers: { 'content-type': 'application/json' },
+        method: 'GET',
+    })
+        .then((response) => {
+            return response.json();
+        })
+        .then((datas) => {
+            if (datas["data"] != null) {
+                logDone.style.display = "none";
+                GETit.style.display = "inline-block";
+                mebout.style.display = "inline-block";
+                loginWrap.style.display = "none";
+                regSuccess.style.display = "none";
+                regFail.style.display = "none";
+                mGETit.style.display = "inline-block";
+                mOut.style.display = "inline-block";
+                mLogDone.style.display = "none";
+            }
+        })
+    // window.location.href=window.location.href;
+});
+
 // 導覽登入
 let mebLogin = document.getElementById("mebLogin");
 //導覽註冊
@@ -117,7 +154,7 @@ reg_btn.addEventListener("click", function () {
     let signBtnBox = document.getElementById("sign_btn_box");
     // 信箱驗證:符合信箱的格式(@前最多64字，@後的伺服器域名需要是以.來分開的格式)
     ename.placeholder = "/^\w+([\w\.\-]){1,63}\@\w+([\w\.\-])\.\w+([\w\.\-])$/";
-    //信箱驗證:符合信箱的格式(@前最多64字，@後的伺服器域名需要是以.來分開的格式)
+    
 
     fetch('/api/user', {
         body: JSON.stringify({ name: `${vname}`, email: `${ename}`, psw: `${pname}` }),
@@ -139,52 +176,25 @@ reg_btn.addEventListener("click", function () {
         })
 });
 
-let logDone = document.getElementById("log_done");
-let regSuccess = document.getElementById("reg_success") //登入成功
-let regFail = document.getElementById("reg_fail")//登入失敗
-let mGETit = document.getElementById("m_GETit")//手機會員專區
-let mOut = document.getElementById("m_out")//手機會員登出
-let mLogDone = document.getElementById("m_log_done") //手機會員登入註冊
-const GETit = document.getElementById("GETit");
-GETit.addEventListener("click", get, false);
+
+
+
+
 //取得當前登入的使用者資訊 GET
-function get() {
-    console.log("會員專區")
-    //當使用者登入後的狀態    
-    fetch('/api/user', {
-        // body: JSON.stringify({ data }),
-        headers: { 'content-type': 'application/json' },
-        method: 'GET',
-    })
-        .then((response) => {
-            return response.json();
-        })
-        .then((datas) => {
-            if (datas["data"] != null) {
-                logDone.style.display = "none";
-                GETit.style.display = "inline-block";
-                mebout.style.display = "inline-block";
-                loginWrap.style.display = "none";
-                regSuccess.style.display = "none";
-                regFail.style.display = "none";
-                mGETit.style.display = "inline-block";
-                mOut.style.display = "inline-block";
-                mLogDone.style.display = "none";
-            }
-        })
-    // window.location.href=window.location.href;
-}
+// function get() {
+   
+// }
 //桌機
 const mebout = document.getElementById("out");
 mebout.addEventListener("click", outout, false);
 //手機
-const phoneOut =document.getElementById("m_out");
-phoneOut.addEventListener("click", outout, false);
+// const phoneOut =document.getElementById("m_out");
+// phoneOut.addEventListener("click", outout, false);
 //登出使用者帳戶(DELETE)
 function outout() {
     console.log("會員登出")
     fetch('/api/user', {
-        body: JSON.stringify({ email: `${ename}`, psw: `${pname}` }),
+        // body: JSON.stringify({ email: `${ename}`, psw: `${pname}` }),
         headers: { 'content-type': 'application/json' },
         method: 'DELETE',
     })

@@ -17,7 +17,7 @@ fetch('/api/' + id) //id=app.py的attractionId
     })
         //這邊才是拿到真正的資料
     .then(function (datas) {
-        console.log("datas:是api", datas);
+        // console.log("datas:是api", datas);
         viewdata(datas)
 
     })
@@ -27,18 +27,18 @@ function viewdata(datas) {
 
     //當前景名
     let name = datas.data.name;
-    console.log("name:", name);
+    // console.log("name:", name);
     //把景點名稱塞進去
     document.getElementById("tpi_view").append(name);
 
     //當前捷運
     let mrt = datas.data.mrt;
-    console.log("mrt:", mrt);
+    // console.log("mrt:", mrt);
     //把捷運名稱塞進去
     document.getElementById("mrt").append(mrt);
     //當前類別
     let cat = datas.data.category;
-    console.log("cat:", cat);
+    // console.log("cat:", cat);
     //把景點類別名稱塞進去
     document.getElementById("cat").append(cat);
 
@@ -59,9 +59,9 @@ function viewdata(datas) {
 
     //景點相片輪播
     data = datas.data.images.length;
-    console.log(data);
+    // console.log(data);
     pic = datas.data.images;
-    console.log(pic[0]);
+    // console.log(pic[0]);
     picShow(pic);
 
 
@@ -95,12 +95,12 @@ function picShow(pic) {
     for (i = 0; i < pic.length; i++) {
         let slides = document.createElement("div");
         slides.setAttribute("class", "pic_item");
-        console.log("slides:", slides)
+        // console.log("slides:", slides)
         const newImage = document.createElement('img');
         newImage.setAttribute("src", `${pic[i]}`)
-        console.log("圖:", pic[i]);
+        // console.log("圖:", pic[i]);
         let test=orderCon.appendChild(relBox).appendChild(relImg).appendChild(picRel).appendChild(slides).appendChild(newImage);
-        console.log("test:",test)
+        // console.log("test:",test)
         // 點點製造中
         let dots=document.createElement("span");
         dots.setAttribute("class","dot")
@@ -114,14 +114,14 @@ function picShow(pic) {
     if (pic > slides.length && pic > dots.length) {
         // console.log("n>:",n)
         slideIndex = 1;
-        console.log(slideIndex);
+        // console.log(slideIndex);
     }
     //按下左箭頭-下一頁循環(-1)
     if (pic < 1) {
         // console.log("n<:",n)
         slideIndex = slides.length
         // slideIndex--;
-        console.log(slideIndex);
+        // console.log(slideIndex);
     }
     for (i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
