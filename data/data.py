@@ -6,23 +6,23 @@ tpi_json=json.load(datas)
 
 
 #建立table名字叫sites
-def bulid(mydb):
-    cursor.execute('DROP TABLE IF EXISTS sites')
-    sql = """CREATE TABLE sites(
-        id MEDIUMINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-        name varchar(255) NOT NULL,
-        category varchar(255),
-        category2 varchar(255),
-        description TEXT,
-        address varchar(255),
-        transport TEXT,
-        mrt varchar(255),
-        latitude double, 
-        longitude double,
-        images LongText
-    )"""
-    cursor.execute(sql) #執行資料庫欄位設定命令
-    mydb.commit() #確認執行提交到SQL
+# def bulid(mydb):
+#     cursor.execute('DROP TABLE IF EXISTS sites')
+#     sql = """CREATE TABLE sites(
+#         id MEDIUMINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+#         name varchar(255) NOT NULL,
+#         category varchar(255),
+#         category2 varchar(255),
+#         description TEXT,
+#         address varchar(255),
+#         transport TEXT,
+#         mrt varchar(255),
+#         latitude double, 
+#         longitude double,
+#         images LongText
+#     )"""
+    # cursor.execute(sql) #執行資料庫欄位設定命令
+    # mydb.commit() #確認執行提交到SQL
 
 #將tpi_json的json資料寫入資料庫
 def insert_data(mydb):
@@ -66,7 +66,7 @@ if __name__=="__main__":
     #開啟資料庫，順序不對會跑不出來
     mydb=pymysql.connect(charset='utf8',database='viewsite',host='127.0.0.1',password='root123',port=3306,user='root') 
     cursor=mydb.cursor()
-    bulid(mydb)
+    # bulid(mydb)
     insert_data(mydb)
     cursor.close()
     datas.close()

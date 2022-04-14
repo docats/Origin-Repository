@@ -71,7 +71,7 @@ body{
     position: fixed;
     top: 0;
     width: 100%;
-    z-index:9999;
+    z-index:300;
     background-color:#fff;
     opacity: .8;
 }
@@ -99,6 +99,10 @@ body{
     text-decoration: underline;
 }
 
+.booking_frame{
+    padding:0;
+}
+
 .my_home{
     padding-bottom: 30px;
 }
@@ -113,10 +117,6 @@ body{
     position: relative;
     margin:66px 0 0 0;
 }
-
-/* .tpi_search{
-    margin-left:40px;
-} */
 
 .welcome h3{
     font-size: 28px;
@@ -169,10 +169,12 @@ body{
     color:#333;
 }
 
-.my_website .tpi_title{
+.my_website .tpi_title a{
     font-weight: 700;
     font-size: 30px;
     color:#448899;
+    text-decoration: none;
+    display: block;
 }
 
 .tpi_find{
@@ -190,15 +192,13 @@ body{
 
 .tpi_search{
     position: relative;
-    z-index: 999;
+    z-index: 100;
 }
 
 .site_name,.site_class{
     font-size: 16px;
     color:#757575;
 }
-
-
 
 .search_con{
     width: 400px;
@@ -238,6 +238,11 @@ footer{
     line-height: 13px;
 }
 
+.alert{
+    color:#f00;
+    font-weight: bold;
+}
+
 .banner_frame{
     width: 1200px;
     margin: 0 auto;
@@ -245,13 +250,26 @@ footer{
 }
 /* attraction頁面 */
 
+.book_style{
+    border-radius: 5px;
+    border:0;
+    border:1px solid #e8e8e8;
+    padding:10px;
+    margin:10px 0;
+}
+
+.title_style{
+    font-size: 16px;
+    vertical-align: middle;
+}
+
 .wp_top{
     width:100%;
     height: auto;
     border-bottom: 1px solid #E8E8E8;
     position: fixed;
     top:0px;
-    z-index: 9999;
+    z-index: 999;
     background-color: #fff;
 }
 
@@ -270,16 +288,36 @@ footer{
     position: relative;
 }
 
+.book_con{
+    max-width: 1015px;
+    margin: 110px auto 0px;
+    position: relative;
+}
+
 .rel_box{
     display:flex;
     flex-direction: row-reverse;/*詭異*/
+}
+
+.meb_order{
+    font-size: 19px;
+    color:#666;
+    font-weight: 700;
+    padding-bottom:30px;
+    padding-left:15px;
+}
+
+.book_box{
+    display:flex;
+}
+.box_img{
+    position: relative;
 }
 
 .rel_img{
     position: relative;
     width: 540px;
     height: 406px;
-    
 }
 
 .rel_img a{
@@ -320,9 +358,12 @@ footer{
     margin:15px 0;
 }
 
-.order_text{
+
+.book_text{
+    font-size: 16px;
     font-weight: 700;
     color:#666;
+    padding:10px 0;
 }
 
 .order_this{
@@ -346,6 +387,38 @@ footer{
     color:#666;
     padding:50px 15px;
 }
+
+.book_dec_box{
+    max-width: 1000px;
+    margin:30px auto;
+    border-top:1px solid #E8E8E8;
+    color:#666;
+    padding:50px 100px;
+}
+
+.pay_dec_box{
+    max-width: 1200px;
+    margin: 30px auto;
+    border-top: 1px solid #E8E8E8;
+    color: #666;
+    padding: 50px 15px;
+    display: flex;
+}
+
+.ur_info{
+    font-size: 19px;
+    font-weight: 700;
+    color: #666;
+}
+
+.ur_note{
+    font-size: 16px;
+    font-weight: 700;
+    color: #666;
+    letter-spacing: 1px;
+    line-height: 1.6;
+}
+
 .view_dec{
     line-height: 1.6;
 }
@@ -354,17 +427,48 @@ footer{
     padding:30px 0 15px 0;
 }
 
+.order_pay{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.booking_btn{
+    text-align: center;
+}
+
+.booking_btn a{
+    display: block;
+    color:#fff;
+    background-color:#448899;
+    border-radius: 5px;
+    text-decoration: none;
+    width: 173px;
+    height: 36px;
+    line-height: 36px;
+    margin-top:25px;
+}
+
+.money{
+    font-size: 16px;
+    text-align: right;
+}
+
 .pic_left,.pic_right{
     display: block;
     width: 36px;
     height: 36px;
     background-color:#fff;
     opacity: .8;
-    z-index: 9999;
+    z-index: 999;
     border-radius: 50%;
     color:#666;
     font-size: 26px;
     font-weight: 900;
+}
+
+.order_text{
+    line-height: 1.6;
 }
 
 .rel_img a:hover{
@@ -425,6 +529,36 @@ footer{
     height: 406px;
 }
 
+.this_book{
+    color:#448899;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    flex-grow:6;
+}
+
+.del{
+    flex-grow:0;
+    cursor: pointer;
+}
+
+.booking_box{
+    width:100%;
+    padding:0 15px;
+}
+
+.booking_pic{
+    width: 266px;
+    height: 200px;
+    padding:0 15px;
+}
+
+.booking_pic img{
+    vertical-align: bottom;
+    width:100%;
+    height: auto;
+}
+
 .order_day{
     position: relative;
     /* outline: 1px solid #f00; */
@@ -464,14 +598,128 @@ footer{
   border-radius: 50%;
 }
 
+.title_box{
+    display: flex;
+}
 
-
-
+.date,.time,.fee,.sites{
+    font-size: 16px;
+    font-weight: 400;
+    color:#666;
+}
 
 /* attraction頁面 */
 
+/* member會員登入頁面設定 */
+.member_wrap{
+    z-index: 9999;
+    width:100%;
+    height: 100%;
+    background:rgba(0, 0, 0, 0.25);
+    position: fixed;
+    transform: 0.5s;
+    top:0;
+}
+.person_signin_box,.person_reg_box{
+    width: 340px;
+    min-height: 275px;
+    height: auto;
+    border-radius: 6px;
+    background-color: #fff;
+    box-shadow: 0px 4px 60px #aaa;
+    position: relative;
+    top:20%;
+    right:0;
+    bottom:0;
+    left:0;
+    margin:auto;
+}
+.person_reg_box{
+    min-height: 332px;
+    height: auto;
+}
+.person_signin_box::before,.person_reg_box::before{
+    content: "";
+    display: block;
+    position:absolute;
+    top:0;
+    width: 340px;
+    height: 10px;
+    background:linear-gradient(270deg, #337788 0%, #66AABB 100%);
+    border-radius:4px 4px 0 0 ;
+}
+.signin_frame{
+    margin:0px auto;
+}
+.signin_words h3{
+    margin-bottom:10px;
+    font-weight: 700;
+    font-size: 24px;
+    color:#666;
+}
+.signin_words,.signin_frame{
+    text-align: center;
+}
+.signin_words,.email,.psw,.sign_btn_box{
+   margin:5px 0; 
+}
+.name,.email,.psw{
+    padding:15px;
+    width:280px;
+    height: 17px;
+    line-height: 17px;
+    border-radius: 5px;
+    border:1px solid #ccc;
+    font-size: 16px;
+    color:#666;
+}
+.signupbtn,.reg_btn{
+    background-color:#448899;
+    width: 310px;
+    height: 47px;
+    line-height: 47px;
+    border-radius: 5px;
+    border:0;
+    font-size: 19px;
+    color:#fff;
+    font-weight: 400;
+    cursor: pointer;
+}
+.signupbtn,.reg_btn:hover{
+    background-color:#427380;
+}
+.signin_notice{
+    padding:5px 0;
+    font-size: 16px;
+    color:#666;
+    letter-spacing: 1px;
+}
+
+.signin_notice span>a{
+    display: inline-block;
+    color:#666;
+    text-decoration: none;
+}
+
+.signin_notice span>a:hover{
+    color:#448899;
+    text-decoration:underline;
+}
+
+.signin_close a{
+    display: block;
+    position: relative;
+    left:140px;
+    top:26px;
+}
+
+/* member會員登入頁面設定 */
+
 /* 平板-600 像素 < 螢幕解析度的寬度 <= 1200 像素 */
 @media (max-width:1200px) {
+    .item_wp{
+        text-align: right;
+    }
     .my_box{
     max-width:1200px;
     margin:0 auto;
@@ -584,6 +832,11 @@ input[type="date"]{
 
 /* attraction頁面 */
 
+.book_dec_box{
+    padding:50px 15px;
+}
+
+
 
 }
 
@@ -593,9 +846,9 @@ input[type="date"]{
         color:#666;
         text-decoration: none;
     }
-    .my_nav{
+    /* .my_nav{
         display: none;
-    }
+    } */
     .m_my_nav{
         display: block;
         width:100%;
@@ -816,10 +1069,6 @@ input[type="date"]{
         outline: none;
     }
    
-   
-
-   
-
     .m_footer{
         width:100%;
         min-height: 104px;
@@ -871,6 +1120,67 @@ input[type="date"]{
         background-color:#000;
       }
 
+    .book_box{
+        display:flex;
+        flex-direction: column;
+    } 
+
+    .booking_pic{
+        width: 340px;
+        height: auto;
+        margin:0 auto;
+    }
+
+    .booking_pic img{
+        width: 100%;
+        height: auto;
+    }
+
+    .booking_box{
+        position: relative;
+        padding:0;
+        
+    }
+
+    .del{
+        position: absolute;
+        right:20px;
+        bottom:0px;
+    }
+
+    .this_book{
+        padding:0;
+        padding:20px 0 10px 10px;
+    }
+
+    .booking_frame{
+        padding:0 20px
+    }
+
+   
+    .meb_order{
+        font-size: 19px;
+        color: #666;
+        font-weight: 700;
+        padding:0;
+        padding:20px 0 20px 20px;
+    }
+
+    .box_rel{
+        width: 100%;
+    }
+
+    .ur_info{
+        padding-bottom:20px;
+    }
+
+    .book_dec_box{
+        padding:50px 15px;
+    }
+
+    /* html{
+        outline: 1px solid #f00;
+    } */
 
     /* html,body{
         width:100%;

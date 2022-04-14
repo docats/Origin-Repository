@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/main.css')}}">
+    <title>歡迎來到台北一日遊</title>
+</head>
+
+<body>
+    <!-- 會員登入\註冊 -->
+    <div class="member_wrap" id="login_wrap" style="display:none;">
+        <div class="person_signin_box">
+            <div class="signin_frame">
+                <!-- 登入會員帳號 -->
+                <div class="signin_close">
+                    <a href="javascript:;" id="login_close">
+                        <img src="{{ url_for('static',filename='images/icon_close.png')}}" alt="關閉">
+                    </a>
+                </div>
+                <div class="signin_words">
+                    <h3>登入會員帳號</h3>
+                </div>
+                <input type="text" placeholder="輸入電子信箱" name="email" class="email" />
+                <input type="password" placeholder="輸入密碼" name="psw" class="psw" />
+                <div class="sign_btn_box" id="signBtnBox">
+                    <!-- <input type="button" class="signupbtn" value="登入帳戶"> -->
+                    <button type="submit" class="signupbtn">登入帳戶</button>
+                </div>
+                <p class="signin_notice">還沒有帳戶?點此<span><a href="javascript:;" title="註冊" id="reg">註冊</a></span></p>
+                <p id="reg_success" style="display:none;color:rgb(44, 120, 21);padding:15px;">恭喜登入成功</p>
+                <p id="reg_fail" style="display:none;color:#f00;padding:15px;">登入失敗</p>
+                <!-- 登入會員帳號 -->
+            </div>
+        </div>
+    </div>
+    <!-- 註冊會員帳號 -->
+    <div class="member_wrap" id="reg_wrap" style="display:none;">
+        <div class="person_reg_box">
+            <div class="signin_frame">
+
+                <div class="signin_close">
+                    <a href="javascript:;" id="reg_close">
+                        <img src="{{ url_for('static',filename='images/icon_close.png')}}" alt="關閉" />
+                    </a>
+                </div>
+                <div class="signin_words">
+                    <h3>註冊會員帳號</h3>
+                </div>
+                <input type="text" placeholder="輸入姓名" class="name" id="vname" />
+                <input type="email" placeholder="輸入電子信箱" class="email" id="ename" />
+                <input type="password" placeholder="輸入密碼" name="psw" class="psw" id="pname" />
+                <div class="sign_btn_box" id="sign_btn_box">
+                    <!-- <input type="button" class="reg_btn" value="註冊帳戶"> -->
+                    <button type="submit" class="reg_btn">註冊帳戶</button>
+                </div>
+                <p class="signin_notice">已經有帳戶了?點此<span><a href="javascript:;" title="登入" id="log">登入</a></span></p>
+                <p id="in_success" style="display:none;color:rgb(44, 120, 21);padding:15px;">恭喜註冊成功</p>
+                <p id="in_fail" style="display:none;color:#f00;padding:15px;">註冊失敗</p>
+            </div>
+        </div>
+        <!-- 註冊會員帳號 -->
+    </div>
+    <!-- 會員登入\註冊 -->
+
+    <div class="wrapper">
+        <!-- 桌機選單 -->
+        <nav class="my_nav">
+            <div class="nav_box">
+                <div class="my_website">
+                    <h1 class="tpi_title"><a href="{{url_for('index')}}">台北一日遊</a></h1>
+                </div>
+                <div class="item_wp">
+                    <span class="item" id="GETit" style="display:none;"><a href="javascript:;">會員專區</a></span>
+                    <span class="item"><a href="javascript:;">預定行程</a></span>
+                    <span class="item_func" id="log_done"><a href="javascript:;" id="mebLogin">登入</a>&nbsp;&#47;&nbsp;<a
+                            href="javascript:;" id="menbRegister">註冊</a></span>
+                    <span class="item" id="out" style="display:none;"><a href="javascript:;">會員登出</a></span>
+
+                </div>
+            </div>
+        </nav>
+        <!-- 桌機選單 -->
+        <!-- 手機選單 -->
+        <!-- <nav class="m_my_nav">
+            <div class="m_nav_box">
+                <div class="m_my_website">
+                    <h1>台北一日遊</h1>
+                   
+                </div>
+                <div class="item_wp">
+                    <span class="item" id="GETit" style="display:none;"><a href="javascript:;">會員專區</a></span>
+                    <span class="item"><a href="javascript:;">預定行程</a></span>
+                    <span class="item_func" id="log_done"><a href="javascript:;" id="mebLogin">登入</a>&nbsp;&#47;<a
+                            href="javascript:;" id="menbRegister">註冊</a></span>
+                    <span class="item" id="out" style="display:none;"><a href="javascript:;">會員登出</a></span>
+                </div>
+            </div>
+        </nav> -->
+        <!-- 手機選單 -->
+        <section class="my_home">
+            <div class="welcome">
+                <div class="banner_frame">
+                    <div class="tpi_search">
+                        <h3>輕鬆享受台北一日悠閒</h3>
+                        <p>
+                            探索每個角落，體驗城市的深度旅遊行程
+                        </p>
+                        <label for="site-search"></label>
+                        <input type="text" id="SearchKey" name="q" placeholder="輸入景點名稱查詢" class="search_con" />
+                        <button class="tpi_find" onclick="moreSearch()">
+                            <img src="{{ url_for('static',filename='images/icon_searchsearch.svg')}}" alt="搜尋" />
+                        </button>
+                    </div>
+                    <div class="temple">
+                        <img src="{{ url_for('static',filename='images/welcome 1.png')}}" alt="就一張圖" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="my_box" id="mains">
+            <!-- 景點資訊 -->
+        </section>
+
+        <footer id="footer">
+            <p class="copyright">
+                COPYRIGHT © 2022 台北一日遊
+            </p>
+        </footer>
+    </div>
+
+
+    <script src="{{url_for('static',filename='js/index.js')}}"></script>
+    <script src="{{url_for('static',filename='js/member.js')}}"></script>
+    <!-- 此為首頁登入登出 onlyfor index.html -->
+    <script>
+        
+        //手機版
+        // m_mebLogin.addEventListener("click", function () {
+        //     loginWrap.style.display = "block";
+        // });
+
+        // m_menbRegister.addEventListener("click", function () {
+        //     regWrap.style.display = "block";
+        // });
+
+        // mOut.addEventListener("click",function(){
+
+        // });
+        
+    </script>
+</body>
+
+</html>
