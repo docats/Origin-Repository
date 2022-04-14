@@ -118,7 +118,7 @@
                     <p class="order_slogn">以此景點為中心的一日行程，帶您探索城市角落故事</p>
                     <!-- <form action=""> -->
                         <label for="order_date" class="order_text m_span">選擇日期：</label>
-                        <input type="date" id="order_date" name="order_date"><br>
+                        <input id="orderDate" name="order_date" type="date" min="2022-05-01" max="2100-06-30" required><br>
                        
                        
                         <label class="order_text m_span">選擇時間：</label>
@@ -166,5 +166,6 @@
      <!-- footer end-->
     <script src="{{url_for('static',filename='js/attraction.js')}}"></script>
     <script src="{{url_for('static',filename='js/member.js')}}"></script>
+    <script src="{{url_for('static',filename='js/booking.js')}}"></script>
 </body>
 </html>

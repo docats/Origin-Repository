@@ -1,3 +1,4 @@
+from email.mime import image
 from flask import *
 import pymysql  # 匯入資料庫模組
 from flask import request  # 載入Request物件(要取得POST參數值)
@@ -171,10 +172,10 @@ async def userStatus():
                 "SELECT email FROM member where email=%s", (email,))
             cursor.close()  # 不用cursor會打架
             # mydb.commit() #確定要更新資料庫
-            
+
             if got != 0:
                 print("帳號已經被註冊")
-               
+
                 return Response(json.dumps(
                     {"error": True,
                      "message": "帳號已經被註冊"}),
@@ -185,20 +186,19 @@ async def userStatus():
                         "INSERT INTO member(name,email,password) VALUES (%s,%s,%s)", (name, email, password))
                     mydb.commit()  # 確定要更新資料庫
                     print("結果:", result)
-                    print("got:",got)
+                    print("got:", got)
                     print("新增", result, "筆，恭喜記錄成功")
                     return Response(json.dumps(
-                    {"ok": True}), status=200, mimetype='application/json')
-                    
-                        
+                        {"ok": True}), status=200, mimetype='application/json')
+
     # 登入後的使用者狀態
     if request.method == 'GET':
         if session.get("email"):
-            id=session.get("id")
-            name=session.get("name")
-            email=session.get("email")
-            print(id,name,email)
-            return jsonify({"data":{"id":id,"name":name,"email":email}})            
+            id = session.get("id")
+            name = session.get("name")
+            email = session.get("email")
+            print(id, name, email)
+            return jsonify({"data": {"id": id, "name": name, "email": email}})
         else:
             print("失敗，甚麼資料都拿不到")
             return jsonify({"data": None})
@@ -207,7 +207,7 @@ async def userStatus():
     if request.method == 'PATCH':
         email = request.json['email']  # 取得表格輸入的E-mail
         password = request.json['psw']  # 取得表格輸入的密碼
-        print(email,password)
+        print(email, password)
         # email=session["email"] #把後端session中email的欄位丟回給前端的email
         if email == "" or password == "":
             print("登入失敗，帳號或密碼為空")
@@ -217,11 +217,11 @@ async def userStatus():
                 status=400, mimetype='application/json')
         with mydb.cursor(pymysql.cursors.DictCursor) as cursor:
             got = cursor.execute(
-                "SELECT * FROM member WHERE  email=%s and password=%s" , (email, password))   
+                "SELECT * FROM member WHERE  email=%s and password=%s", (email, password))
             result = cursor.fetchone()  # 僅讀一筆紀錄
             # cursor.close()
             mydb.commit()  # 確定要更新資料庫
-            print("印",result)
+            print("印", result)
             if got == 0:  # 帳號或密碼打錯字
                 print("登入失敗，帳號或密碼錯誤")
                 return Response(json.dumps(
@@ -229,12 +229,12 @@ async def userStatus():
                      "message": "登入失敗，帳號或密碼錯誤"}),
                     status=400, mimetype='application/json')
             if got == 1:  # 帳號或密碼打對了
-                    session["email"]=email #把email放到session
-                    session["name"]=result["name"] #把從資料庫的name放到session
-                    session["id"]=result["id"] 
-                    print("登入成功123")
-                    return Response(json.dumps(
-                        {"ok": True}), status=200, mimetype='application/json')
+                session["email"] = email  # 把email放到session
+                session["name"] = result["name"]  # 把從資料庫的name放到session
+                session["id"] = result["id"]
+                print("登入成功123")
+                return Response(json.dumps(
+                    {"ok": True}), status=200, mimetype='application/json')
             else:
                 print("登入失敗，帳號或密碼錯誤或其他原因")
                 return Response(json.dumps(
@@ -254,6 +254,77 @@ async def userStatus():
                          "message": "登出成功"}),
                         status=200, mimetype='application/json')
 
-if __name__ == "__main__":
+# 使用者預定行程API 2022/4/13
+@app.route("/api/booking", methods=["GET", "POST", "DELETE"])
+async def bookstatus():
+    # 取得尚未確認下單的預定行程
+    if request.method == 'GET':
+        if "email" in session:
+            if "id" in session:
+                id = session["id"] #將session資料提出，放到id(此為景點id)
+                name=session["name"]
+                address=session["address"]
+                images=session["images"]
+                date=session["date"]
+                time=session["time"]
+                price=session["price"]
+                for pic in images.split("http://")[1:2]:
+                    images=pic
+                bookDataGet = {
+                    "id":id,
+                    "name":name,
+                    "address":address,
+                    "image":"https://"+images
+                }
+                return Response(json.dumps(
+                {"data": {"attraction": {"id": id,"name": name,"address": address,"image": "https://"+images},"date": date,"time": time,"price":price}}), status=200, mimetype='application/json')
+            else:
+                # 尚未確認下單的預定行程資料，null 表示沒有資料status(200)
+                return Response(json.dumps({"data": None}),status=200, mimetype='application/json')
+        else:
+            # 未登入系統，拒絕存取status(403)
+            return Response(json.dumps({"error": True,"message": "未登入系統，拒絕存取"}), status=403, mimetype='application/json')
 
+# 建立新的預定行程
+    if request.method == 'POST':
+        if "email" in session:
+            id = request.json["id"]
+            date=request.json["date"]
+            time=request.json["time"]
+            price=request.json["price"]
+            with mydb.cursor(pymysql.cursors.DictCursor) as cursor:
+                got=cursor.execute(
+                    "SELECT id,address,images FROM sites WHERE id=%s",(id,))
+                result=cursor.fetchone() #取得一筆資料
+                mydb.commit()
+                print("result888",result)
+                session["id"]=id   # 把後端session中id的欄位丟回給前端的id
+                session["name"]=name
+                session["address"]=address
+                session["images"]=images
+                session["date"]=date
+                session["time"]=time
+                session["price"]=price
+                # 建立成功status(200)
+                return Response(json.dumps({"ok": True}), status=200, mimetype='application/json')
+        if got!=0:
+            # 建立失敗，輸入不正確或其他原因status(400)
+            return Response(json.dumps({"error": True, "message": "建立失敗，輸入不正確或其他原因"}), status=400, mimetype='application/json')
+        if "email" not in session:
+            # 未登入系統，拒絕存取status=403
+            return Response(json.dumps({"error": True, "message": "未登入系統，拒絕存取"}), status=403, mimetype='application/json')
+    else: # 伺服器內部錯誤status(500)
+        return Response(json.dumps({"error": True, "message": "伺服器內部錯誤"}), status=500, mimetype='application/json')
+
+# 刪除目前預定行程
+    if request.method == 'DELETE':
+        if "email" in session:
+            session.pop("id",None)
+            # 刪除成功
+            return Response(json.dumps({"ok": True}), status=200, mimetype='application/json')
+        else:
+            # 未登入系統，拒絕存取
+            return Response(json.dumps({"error": True, "message": "未登入系統，拒絕存取"}), status=403, mimetype='application/json')
+
+if __name__ == "__main__":
     app.run(host='0.0.0.0', port=3000)

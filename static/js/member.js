@@ -32,7 +32,6 @@ window.addEventListener("load", get = () => {
                 // mLogDone.style.display = "none";
             }
         })
-    // window.location.href=window.location.href;
 });
 
 // 導覽登入
