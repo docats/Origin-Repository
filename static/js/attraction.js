@@ -1,3 +1,49 @@
+let bookTrip = document.getElementById("bookTrip");//開始預訂行程按鈕
+bookTrip.addEventListener("click", bookNow, false);
+function bookNow() {
+    let selectDate = document.getElementById("selectDate")//日期沒選擇警示框
+    //抓輸入日期
+    let orderDate = document.getElementById("orderDate").value;
+    console.log("orderDate", orderDate);
+    // 判斷是否有登入帳戶
+    fetch('/api/user', {
+        // body: JSON.stringify({ data }),
+        headers: { 'content-type': 'application/json' },
+        method: 'GET',
+    })
+        .then((response) => {
+            return response.json();
+        })
+        .then((datas) => {
+
+            if (datas["data"] == null) {
+                reg_wrap.style.display = "block";
+            }
+            else if (orderDate == "") {
+                selectDate.style.display = "block;"
+                bookTrip.replace = '<input type="submit" value="開始預訂行程" class="order_this" id="bookTrip" disabled>'
+                bookTrip.style = "backGround-color:#666;"
+                alert("請選擇日期時間")
+            }
+            else if (orderDate != "") {
+                bookTrip.style = "backGround-color:#448899;"
+                window.location.href = '../booking';
+            }
+
+        })
+}
+
+//抓景點
+let tipView = document.getElementById("tpi_view");
+//選上半天
+let firstHalfDay = document.getElementById("first_half_day").value;
+//選下半天
+let secHalfDay = document.getElementById("sec_half_day").value;
+//導覽費用
+let showFee = document.getElementById("show_fee")
+//抓地址
+let atrAddress = document.getElementById("atr_address");
+
 //取得景點資訊訂購外框項目
 const orderCon = document.getElementById("view_con");
 

@@ -140,7 +140,7 @@ def api_id(attractionId):
             summary = {
                 "id": site["id"], "name": site["name"], "category": site["category2"], "description": site["description"], "address": site["address"], "transport": site["transport"], "mrt": site["mrt"], "latitude": site["latitude"], "longitude": site["longitude"], "images": json.loads(site["images"].replace("'", "\""))
             }
-            # summary["data"]["images"]=json.loads(summary["data"]["images"]) #轉換json格式
+            print("summary",summary)
             return jsonify({"data": summary})
         return jsonify({"error": True, "message": "查無資料"})
 
@@ -197,7 +197,7 @@ async def userStatus():
             id = session.get("id")
             name = session.get("name")
             email = session.get("email")
-            print(id, name, email)
+            print("我是資料:", id, name, email)
             return jsonify({"data": {"id": id, "name": name, "email": email}})
         else:
             print("失敗，甚麼資料都拿不到")
@@ -254,77 +254,47 @@ async def userStatus():
                          "message": "登出成功"}),
                         status=200, mimetype='application/json')
 
-# 使用者預定行程API 2022/4/13
+# 使用者預定行程API 使用session製作
 @app.route("/api/booking", methods=["GET", "POST", "DELETE"])
 async def bookstatus():
-    # 取得尚未確認下單的預定行程
+# 取得尚未確認下單的預定行程
     if request.method == 'GET':
-        if "email" in session:
-            if "id" in session:
-                id = session["id"] #將session資料提出，放到id(此為景點id)
-                name=session["name"]
-                address=session["address"]
-                images=session["images"]
-                date=session["date"]
-                time=session["time"]
-                price=session["price"]
-                for pic in images.split("http://")[1:2]:
-                    images=pic
-                bookDataGet = {
-                    "id":id,
-                    "name":name,
-                    "address":address,
-                    "image":"https://"+images
-                }
-                return Response(json.dumps(
-                {"data": {"attraction": {"id": id,"name": name,"address": address,"image": "https://"+images},"date": date,"time": time,"price":price}}), status=200, mimetype='application/json')
-            else:
-                # 尚未確認下單的預定行程資料，null 表示沒有資料status(200)
-                return Response(json.dumps({"data": None}),status=200, mimetype='application/json')
-        else:
-            # 未登入系統，拒絕存取status(403)
-            return Response(json.dumps({"error": True,"message": "未登入系統，拒絕存取"}), status=403, mimetype='application/json')
+        id = session.get("id")
+        name = session.get("name")
+        email = session.get("email")
+        address = session.get("address")
+        images = session.get("images")
+        print(id, name, email)
+        return Response(json.dumps(
+                {"data": {"attraction": {"id": id, "name": name, "address": address, "image": "https://"+images}, "date": date, "time": time, "price": price}}), status=200, mimetype='application/json')
+# # 尚未確認下單的預定行程資料，null 表示沒有資料status(200)
+# return Response(json.dumps({"data": None}), status=200, mimetype='application/json')
+# # 未登入系統，拒絕存取status(403)
+# return Response(json.dumps({"error": True, "message": "未登入系統，拒絕存取"}), status=403, mimetype='application/json')
 
 # 建立新的預定行程
-    if request.method == 'POST':
-        if "email" in session:
-            id = request.json["id"]
-            date=request.json["date"]
-            time=request.json["time"]
-            price=request.json["price"]
-            with mydb.cursor(pymysql.cursors.DictCursor) as cursor:
-                got=cursor.execute(
-                    "SELECT id,address,images FROM sites WHERE id=%s",(id,))
-                result=cursor.fetchone() #取得一筆資料
-                mydb.commit()
-                print("result888",result)
-                session["id"]=id   # 把後端session中id的欄位丟回給前端的id
-                session["name"]=name
-                session["address"]=address
-                session["images"]=images
-                session["date"]=date
-                session["time"]=time
-                session["price"]=price
-                # 建立成功status(200)
-                return Response(json.dumps({"ok": True}), status=200, mimetype='application/json')
-        if got!=0:
-            # 建立失敗，輸入不正確或其他原因status(400)
-            return Response(json.dumps({"error": True, "message": "建立失敗，輸入不正確或其他原因"}), status=400, mimetype='application/json')
-        if "email" not in session:
-            # 未登入系統，拒絕存取status=403
-            return Response(json.dumps({"error": True, "message": "未登入系統，拒絕存取"}), status=403, mimetype='application/json')
-    else: # 伺服器內部錯誤status(500)
-        return Response(json.dumps({"error": True, "message": "伺服器內部錯誤"}), status=500, mimetype='application/json')
+    # if request.method == 'POST':
+
+    #             # 建立成功status(200)
+    #             return Response(json.dumps({"ok": True}), status=200, mimetype='application/json')
+    #     if got!=0:
+    #         # 建立失敗，輸入不正確或其他原因status(400)
+    #         return Response(json.dumps({"error": True, "message": "建立失敗，輸入不正確或其他原因"}), status=400, mimetype='application/json')
+    #     if "email" not in session:
+    #         # 未登入系統，拒絕存取status=403
+    #         return Response(json.dumps({"error": True, "message": "未登入系統，拒絕存取"}), status=403, mimetype='application/json')
+    # else: # 伺服器內部錯誤status(500)
+    #     return Response(json.dumps({"error": True, "message": "伺服器內部錯誤"}), status=500, mimetype='application/json')
 
 # 刪除目前預定行程
-    if request.method == 'DELETE':
-        if "email" in session:
-            session.pop("id",None)
-            # 刪除成功
-            return Response(json.dumps({"ok": True}), status=200, mimetype='application/json')
-        else:
-            # 未登入系統，拒絕存取
-            return Response(json.dumps({"error": True, "message": "未登入系統，拒絕存取"}), status=403, mimetype='application/json')
+    # if request.method == 'DELETE':
+    #     if "email" in session:
+    #         session.pop("id",None)
+    #         # 刪除成功
+    #         return Response(json.dumps({"ok": True}), status=200, mimetype='application/json')
+    #     else:
+    #         # 未登入系統，拒絕存取
+    #         return Response(json.dumps({"error": True, "message": "未登入系統，拒絕存取"}), status=403, mimetype='application/json')
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=3000)

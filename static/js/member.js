@@ -6,10 +6,10 @@ let mOut = document.getElementById("m_out")//手機會員登出
 let mLogDone = document.getElementById("m_log_done") //手機會員登入註冊
 const GETit = document.getElementById("GETit");
 // GETit.addEventListener("click", get, false);
+//如果抓日期後，點下開始預訂行程按鈕，系統將判斷是否為會員
 
 //取得當前登入的使用者資訊 GET
 window.addEventListener("load", get = () => {
-    console.log("會員專區")
     //當使用者登入後的狀態    
     fetch('/api/user', {
         // body: JSON.stringify({ data }),
@@ -20,6 +20,7 @@ window.addEventListener("load", get = () => {
             return response.json();
         })
         .then((datas) => {
+            console.log(datas.data.name);
             if (datas["data"] != null) {
                 logDone.style.display = "none";
                 GETit.style.display = "inline-block";
@@ -27,12 +28,12 @@ window.addEventListener("load", get = () => {
                 loginWrap.style.display = "none";
                 regSuccess.style.display = "none";
                 regFail.style.display = "none";
-                // mGETit.style.display = "inline-block";
-                // mOut.style.display = "inline-block";
-                // mLogDone.style.display = "none";
+                
             }
         })
 });
+
+
 
 // 導覽登入
 let mebLogin = document.getElementById("mebLogin");
@@ -168,7 +169,7 @@ reg_btn.addEventListener("click", function () {
             // console.log("123:",datas)
             if (datas.error === true) {
                 inFail.style.display = "block";
-                setTimeout(outout , 3000)
+                setTimeout(outout, 3000)
             } else if (datas.ok === true)
                 inSuccess.style.display = "block";
             setTimeout(function () { window.location.href = window.location.href; }, 3000)

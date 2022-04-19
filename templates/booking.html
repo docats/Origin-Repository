@@ -89,7 +89,7 @@
 
     <!-- 桌機版 -->
     <section class="book_con" id="book_con">
-        <h3 class="meb_order">您好，{{name}}，待預訂的行程如下:</h3>
+        <h3 class="meb_order">您好，<span id="bookName"></span>，待預訂的行程如下:</h3>
         <div class="book_box">
             <div class="box_img" id="box_img">
                 <!-- <a href="#"><div class="pic_left"><</div></a>
@@ -109,7 +109,7 @@
             <div class="booking_box">
                 <div class="title_box">
                     <div class="this_book">
-                        <h2 class="this_book">台北一日遊：平安鐘</h2>
+                        <h2 class="this_book">台北一日遊：<span class="this_book" id="site">平安鐘</span></h2>
                     </div>
                     <div class="del" id="del"><img src="{{ url_for('static',filename='images/icon_delete.png')}}"
                             alt="刪除"></div>

@@ -5,25 +5,6 @@ datas= open("taipei-attractions.json",encoding="utf-8")
 tpi_json=json.load(datas)
 
 
-#建立table名字叫sites
-# def bulid(mydb):
-#     cursor.execute('DROP TABLE IF EXISTS sites')
-#     sql = """CREATE TABLE sites(
-#         id MEDIUMINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-#         name varchar(255) NOT NULL,
-#         category varchar(255),
-#         category2 varchar(255),
-#         description TEXT,
-#         address varchar(255),
-#         transport TEXT,
-#         mrt varchar(255),
-#         latitude double, 
-#         longitude double,
-#         images LongText
-#     )"""
-    # cursor.execute(sql) #執行資料庫欄位設定命令
-    # mydb.commit() #確認執行提交到SQL
-
 #將tpi_json的json資料寫入資料庫
 def insert_data(mydb):
     #要用到資料庫時的語法

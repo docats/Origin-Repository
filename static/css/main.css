@@ -378,6 +378,7 @@ footer{
     font-weight: 400;
     color:#fff;
     margin-top:10px;
+    cursor: pointer;
 }
 
 .view_dec_box{
@@ -620,7 +621,7 @@ footer{
     transform: 0.5s;
     top:0;
 }
-.person_signin_box,.person_reg_box{
+.person_signin_box,.person_reg_box,.notice_signin_box{
     width: 340px;
     min-height: 275px;
     height: auto;
@@ -634,11 +635,15 @@ footer{
     left:0;
     margin:auto;
 }
+.notice_signin_box{
+    min-height:0;
+    min-height: auto;
+}
 .person_reg_box{
     min-height: 332px;
     height: auto;
 }
-.person_signin_box::before,.person_reg_box::before{
+.person_signin_box::before,.person_reg_box::before,.notice_signin_box::before{
     content: "";
     display: block;
     position:absolute;

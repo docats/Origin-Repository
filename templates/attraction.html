@@ -8,6 +8,7 @@
     <title>attraction</title>
 </head>
 <body>
+   
      <!-- 會員登入\註冊 -->
      <div class="member_wrap" id="login_wrap" style="display:none;">
         <div class="person_signin_box">
@@ -117,8 +118,8 @@
                     <p class="order_text">訂購導覽行程</p>
                     <p class="order_slogn">以此景點為中心的一日行程，帶您探索城市角落故事</p>
                     <!-- <form action=""> -->
-                        <label for="order_date" class="order_text m_span">選擇日期：</label>
-                        <input id="orderDate" name="order_date" type="date" min="2022-05-01" max="2100-06-30" required><br>
+                        <label  class="order_text m_span">選擇日期：</label>
+                        <input id="orderDate" type="date" min="2022-05-01" max="2100-06-30" value="" required><br>
                        
                        
                         <label class="order_text m_span">選擇時間：</label>
@@ -135,7 +136,8 @@
                       <br>
                        <label for="fee" class="order_text m_span">導覽費用：</label>
                        <label name="order_date" id="show_fee"></label><br>
-                       <input type="submit" value="開始預訂行程" class="order_this">
+                       <input type="submit" value="開始預訂行程" class="order_this" id="bookTrip">
+                        <p id="selectDate" style="color:#FF2756;font-size:16px;font-weight:bold;padding:15px;display:none;">請選擇日期<p>
                     <!-- </form> -->
                 </div>
             </div>
