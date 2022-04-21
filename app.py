@@ -264,9 +264,17 @@ async def bookstatus():
         email = session.get("email")
         address = session.get("address")
         images = session.get("images")
+        #以下是行程
+        orderDate =session.get("orderDate")
+        showFee=session.get("showFee")
+
+        # 時間判斷早上或下午
+        if session.get("earlyBird"):
+            time = session.get("earlyBird")
+        else:
+            time = session.get("latterBird")
         print(id, name, email)
-        return Response(json.dumps(
-                {"data": {"attraction": {"id": id, "name": name, "address": address, "image": "https://"+images}, "date": date, "time": time, "price": price}}), status=200, mimetype='application/json')
+    return Response(json.dumps({"data": {"attraction": {"id": id, "name": name, "address": address, "image": "https://"+images}, "date": orderDate, "time": time, "price": showFee}}), status=200, mimetype='application/json')
 # # 尚未確認下單的預定行程資料，null 表示沒有資料status(200)
 # return Response(json.dumps({"data": None}), status=200, mimetype='application/json')
 # # 未登入系統，拒絕存取status(403)

@@ -1,10 +1,25 @@
-let bookTrip = document.getElementById("bookTrip");//開始預訂行程按鈕
+//開始預訂行程按鈕
+let bookTrip = document.getElementById("bookTrip");
 bookTrip.addEventListener("click", bookNow, false);
 function bookNow() {
     let selectDate = document.getElementById("selectDate")//日期沒選擇警示框
     //抓輸入日期
-    let orderDate = document.getElementById("orderDate").value;
-    console.log("orderDate", orderDate);
+    let orderTime = document.getElementById("orderTime").value;
+    console.log("orderDate:", orderTime);
+    
+    let showFee=document.getElementById("show_fee").innerText;
+    console.log("showFee:",showFee)
+
+    //抓景點
+    let tpiView=document.getElementById("tpi_view").innerText;
+    console.log("抓景點:",tpiView)
+
+    //抓地址
+    let atrAddress=document.getElementById("atr_address").innerText;
+    console.log("抓地址:",atrAddress)
+
+    
+
     // 判斷是否有登入帳戶
     fetch('/api/user', {
         // body: JSON.stringify({ data }),
@@ -19,26 +34,42 @@ function bookNow() {
             if (datas["data"] == null) {
                 reg_wrap.style.display = "block";
             }
-            else if (orderDate == "") {
+            else if (orderTime == "") {
                 selectDate.style.display = "block;"
                 bookTrip.replace = '<input type="submit" value="開始預訂行程" class="order_this" id="bookTrip" disabled>'
                 bookTrip.style = "backGround-color:#666;"
                 alert("請選擇日期時間")
             }
-            else if (orderDate != "") {
+            else if (orderTime != "") {
                 bookTrip.style = "backGround-color:#448899;"
-                window.location.href = '../booking';
+                // window.location.href = '../booking'; //跳頁先關
             }
+            //抓選擇時間
+            time()
 
         })
 }
 
+
+
+function time(){
+    //抓選擇時間
+    let morning = document.getElementById("first_half_day");
+    // console.log("上半天:", morning);
+    let afternoon = document.getElementById("sec_half_day");
+    // console.log("下半天:", afternoon);
+
+    if (morning.checked == true ){
+        let earlyBird = morning.value
+        return console.log(earlyBird)
+    }else {
+        let latterBird = afternoon.value
+        return console.log(latterBird)
+    }
+}
+
 //抓景點
 let tipView = document.getElementById("tpi_view");
-//選上半天
-let firstHalfDay = document.getElementById("first_half_day").value;
-//選下半天
-let secHalfDay = document.getElementById("sec_half_day").value;
 //導覽費用
 let showFee = document.getElementById("show_fee")
 //抓地址

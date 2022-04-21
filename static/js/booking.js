@@ -22,22 +22,10 @@ fetch('/api/user', {
     .then((datas) => {
 
         bookView(datas)
-        console.log("555:", datas);
-
+       
     })
 
-//使用fetch取得並展示特定景點資訊
-fetch('/api/' + id) //id=app.py的attractionId
-    .then(function (response) {
-        //處理response
-        return response.json();
-    })
-    //這邊才是拿到真正的資料
-    .then(function (datas) {
-        console.log("datas:是api", datas);
 
-
-    })
 
 
 
