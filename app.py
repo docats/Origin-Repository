@@ -266,14 +266,17 @@ async def bookstatus():
         images = session.get("images")
         #以下是行程
         orderDate =session.get("orderDate")
+        print("orderDate",orderDate)
         showFee=session.get("showFee")
 
         # 時間判斷早上或下午
         if session.get("earlyBird"):
             time = session.get("earlyBird")
+            print("123:",time)
         else:
             time = session.get("latterBird")
-        print(id, name, email)
+            print("456:",time)
+    print(id, name, email,time)
     return Response(json.dumps({"data": {"attraction": {"id": id, "name": name, "address": address, "image": "https://"+images}, "date": orderDate, "time": time, "price": showFee}}), status=200, mimetype='application/json')
 # # 尚未確認下單的預定行程資料，null 表示沒有資料status(200)
 # return Response(json.dumps({"data": None}), status=200, mimetype='application/json')
@@ -281,18 +284,18 @@ async def bookstatus():
 # return Response(json.dumps({"error": True, "message": "未登入系統，拒絕存取"}), status=403, mimetype='application/json')
 
 # 建立新的預定行程
-    # if request.method == 'POST':
+if request.method == 'POST':
 
-    #             # 建立成功status(200)
-    #             return Response(json.dumps({"ok": True}), status=200, mimetype='application/json')
-    #     if got!=0:
-    #         # 建立失敗，輸入不正確或其他原因status(400)
-    #         return Response(json.dumps({"error": True, "message": "建立失敗，輸入不正確或其他原因"}), status=400, mimetype='application/json')
-    #     if "email" not in session:
-    #         # 未登入系統，拒絕存取status=403
-    #         return Response(json.dumps({"error": True, "message": "未登入系統，拒絕存取"}), status=403, mimetype='application/json')
-    # else: # 伺服器內部錯誤status(500)
-    #     return Response(json.dumps({"error": True, "message": "伺服器內部錯誤"}), status=500, mimetype='application/json')
+                # 建立成功status(200)
+                return Response(json.dumps({"ok": True}), status=200, mimetype='application/json')
+        if got!=0:
+            # 建立失敗，輸入不正確或其他原因status(400)
+            return Response(json.dumps({"error": True, "message": "建立失敗，輸入不正確或其他原因"}), status=400, mimetype='application/json')
+        if "email" not in session:
+            # 未登入系統，拒絕存取status=403
+            return Response(json.dumps({"error": True, "message": "未登入系統，拒絕存取"}), status=403, mimetype='application/json')
+    else: # 伺服器內部錯誤status(500)
+        return Response(json.dumps({"error": True, "message": "伺服器內部錯誤"}), status=500, mimetype='application/json')
 
 # 刪除目前預定行程
     # if request.method == 'DELETE':

@@ -20,7 +20,7 @@ window.addEventListener("load", get = () => {
             return response.json();
         })
         .then((datas) => {
-            console.log(datas.data.name);
+            // console.log(datas.data.name);
             if (datas["data"] != null) {
                 logDone.style.display = "none";
                 GETit.style.display = "inline-block";

@@ -34,9 +34,9 @@ function bookView(datas) {
     //使用者姓名
     let name = datas.data.name;
     console.log("name:", name);
+    console.log(datas.data);
     let bookName = document.getElementById("bookName");
     bookName.innerHTML = name;
-   
 }
 
 //景點畫面

@@ -6,19 +6,30 @@ function bookNow() {
     //抓輸入日期
     let orderTime = document.getElementById("orderTime").value;
     console.log("orderDate:", orderTime);
-    
-    let showFee=document.getElementById("show_fee").innerText;
-    console.log("showFee:",showFee)
+
+    let showFee = document.getElementById("show_fee").innerText;
+    console.log("showFee:", showFee)
 
     //抓景點
-    let tpiView=document.getElementById("tpi_view").innerText;
-    console.log("抓景點:",tpiView)
+    let tpiView = document.getElementById("tpi_view").innerText;
+    console.log("抓景點:", tpiView)
 
     //抓地址
-    let atrAddress=document.getElementById("atr_address").innerText;
-    console.log("抓地址:",atrAddress)
+    let atrAddress = document.getElementById("atr_address").innerText;
+    console.log("抓地址:", atrAddress)
 
-    
+    // 建立新的預定行程POST狀態
+    fetch('/api/booking', {
+        body: JSON.stringify({}),
+        headers: { 'content-type': 'application/json' },
+        method: 'POST',
+    }).then((response) => {
+        return response.json();
+    }).then((datas) => {
+        //這邊才是拿到真正的資料
+        
+    })
+
 
     // 判斷是否有登入帳戶
     fetch('/api/user', {
@@ -42,7 +53,7 @@ function bookNow() {
             }
             else if (orderTime != "") {
                 bookTrip.style = "backGround-color:#448899;"
-                // window.location.href = '../booking'; //跳頁先關
+                window.location.href = '../booking'; //跳頁先關
             }
             //抓選擇時間
             time()
@@ -52,17 +63,17 @@ function bookNow() {
 
 
 
-function time(){
+function time() {
     //抓選擇時間
     let morning = document.getElementById("first_half_day");
     // console.log("上半天:", morning);
     let afternoon = document.getElementById("sec_half_day");
     // console.log("下半天:", afternoon);
 
-    if (morning.checked == true ){
+    if (morning.checked == true) {
         let earlyBird = morning.value
         return console.log(earlyBird)
-    }else {
+    } else {
         let latterBird = afternoon.value
         return console.log(latterBird)
     }
@@ -92,7 +103,7 @@ fetch('/api/' + id) //id=app.py的attractionId
         //處理response
         return response.json();
     })
-        //這邊才是拿到真正的資料
+    //這邊才是拿到真正的資料
     .then(function (datas) {
         // console.log("datas:是api", datas);
         viewdata(datas)
@@ -156,18 +167,18 @@ function currentSlide(pic) {
     picShow(slideIndex = pic);
 }
 // function currentSlide() {
-    
+
 // }
 let relBox = document.querySelector(".rel_box");
 let relImg = document.querySelector(".rel_img");
-let picRel=document.querySelector(".pic_rel");
+let picRel = document.querySelector(".pic_rel");
 // 點點的外框
 let dotBox = document.querySelector(".dot_box");
 //景點相片輪播
 function picShow(pic) {
     let i;
     // let dots = document.getElementsByClassName("dot");
-    
+
     //用程式把圖片跑出來
     for (i = 0; i < pic.length; i++) {
         let slides = document.createElement("div");
@@ -176,17 +187,17 @@ function picShow(pic) {
         const newImage = document.createElement('img');
         newImage.setAttribute("src", `${pic[i]}`)
         // console.log("圖:", pic[i]);
-        let test=orderCon.appendChild(relBox).appendChild(relImg).appendChild(picRel).appendChild(slides).appendChild(newImage);
+        let test = orderCon.appendChild(relBox).appendChild(relImg).appendChild(picRel).appendChild(slides).appendChild(newImage);
         // console.log("test:",test)
         // 點點製造中
-        let dots=document.createElement("span");
-        dots.setAttribute("class","dot")
+        let dots = document.createElement("span");
+        dots.setAttribute("class", "dot")
         // dots.setAttribute("onclick","currentSlide()");
         orderCon.appendChild(relBox).appendChild(relImg).appendChild(dotBox).appendChild(dots)
-        
+
     }
-    slides=document.getElementsByClassName("pic_item")
-    dots=document.getElementsByClassName("dot")
+    slides = document.getElementsByClassName("pic_item")
+    dots = document.getElementsByClassName("dot")
     //按下右箭頭-下一頁循環(+1)
     if (pic > slides.length && pic > dots.length) {
         // console.log("n>:",n)
